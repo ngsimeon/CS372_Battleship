@@ -1,0 +1,18 @@
+User story
+
+Difficulty ranking 1-10
+
+As a user I want 10x10 grid - 1
+As a user I want a simple text based interface - 5
+As a user I want the standard battleship rules. - 7
+As a user I would like to play via network. - 8
+sfml
+As a user I would like to place my ships wherever I want. - 7
+As a user I want to be able to sink the titanic a second time. - 3
+As a player I don’t want the second player to be able to see my board. - 8
+Depends on implementation.
+I would like a clear interface for ‘hits’ and ‘misses’. - 3
+As a user I want custom games. - 5
+I want to be able to move the ships. - 6
+I would like to be able to drop mines. - 4
+Send torpedo that move 1 space each turn. - 8
