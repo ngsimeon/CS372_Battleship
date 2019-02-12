@@ -1,6 +1,8 @@
-User story
+CS372 Software Construction
+Project 1: Battleship
 
-Difficulty ranking 1-10
+User stories:
+Difficulty ranking: 1-10
 
 As a user I want 10x10 grid - 1
 As a user I want a simple text based interface - 5
