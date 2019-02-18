@@ -12,15 +12,18 @@
 
 
 Ship testShip1(1,1);
-Ship testShip2(-5, -3);
+Ship testShip2(5,5);
+
+
 
 
 
 TEST_CASE("ship with is 1 & position 1"){
     REQUIRE(testShip1.getSize() == 1);
     REQUIRE(testShip1.getPosition() == 1);
-    REQUIRE(testShip2.getSize() > 0);
-    REQUIRE(testShip2.getPosition() > 0);
+
+    testShip2.hit(1);
+    REQUIRE(testShip2.getHits(1));
 
 
 
