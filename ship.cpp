@@ -6,14 +6,14 @@
 
 
 
-Ship::Ship(int position, size_t size):_position(position),_size(size){}
+Ship::Ship(size_t position, size_t size):_position(position),_size(size){}
 
-int Ship::getPosition()
+std::size_t Ship::getPosition()
 {
     return _position;
 }
 
-int Ship::getSize()
+std::size_t Ship::getSize()
 {
     return _size;
 }

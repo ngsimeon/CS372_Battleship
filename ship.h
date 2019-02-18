@@ -8,19 +8,25 @@
 
 #include <cstddef>
 
+
+
+//Ship
+//size will always be from size 1-5
+//position will always be from 1-100
 class Ship{
 
 
 public:
-    Ship(int position, std::size_t size);
+    Ship(std::size_t position, std::size_t size);
 
-    getSize();
-    getPosition();
+    std::size_t getSize();
+    std::size_t getPosition();
 
 
 private:
-    int _position;
+    std::size_t _position;
     std::size_t _size;
+
 
 
 
