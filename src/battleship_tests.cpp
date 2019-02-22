@@ -9,17 +9,17 @@
 #include "ship.h"
 #include "board.h"
 
-Ship testShip1(1,1);
-Ship testShip2(5,5);
-
 TEST_CASE("Testing General Ship Functions") {
 
-    SECTION("Size = 1, Position = 1")
-    REQUIRE(testShip1.getSize() == 1);
+    Ship testShip1(1,1);
+    Ship testShip2(5,5);
+
+    SECTION("Length = 1, Position = 1")
+    REQUIRE(testShip1.getLength() == 1);
     REQUIRE(testShip1.getPosition() == 1);
 
-    SECTION("Size = 5, Position = 5")
-    REQUIRE(testShip2.getSize() == 5);
+    SECTION("Length = 5, Position = 5")
+    REQUIRE(testShip2.getLength() == 5);
     REQUIRE(testShip2.getPosition() == 5);
 
     testShip2.hit(1);
@@ -28,13 +28,20 @@ TEST_CASE("Testing General Ship Functions") {
     SECTION("Test Hitting the Ship")
     REQUIRE(testShip2.getHits(1));
     REQUIRE(testShip2.getHits(3));
-    REQUIRE_FALSE(testShip2.getHits(5));
+    REQUIRE(!testShip2.getHits(4));
 }
-
-Board board1;
 
 TEST_CASE("Testing Board Size and Coordinates") {
 
+    Board board1;
     SECTION("Default Size is 10x10 = 100 Tiles")
-    REQUIRE(board1.getSize() == 100);
+    REQUIRE(board1.size() == 100);
+
+    Board board2(6);
+    SECTION("1-Param Ctor")
+    REQUIRE(board2.size() == 36);
+
+    Board board3(8, 6);
+    SECTION("2-Param Ctor")
+    REQUIRE(board3.size() == 48);
 }

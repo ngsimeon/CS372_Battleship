@@ -26,9 +26,9 @@ using std::vector;
 class Ship {
 
 public:
-    Ship(size_t position, size_t size);
+    Ship(size_t position, size_t length);
 
-    size_t getSize();
+    size_t getLength();
     size_t getPosition();
 
     void hit(size_t position);
@@ -36,7 +36,7 @@ public:
 
 private:
     size_t _position;
-    size_t _size;
+    size_t _length;
     vector<bool> _hits;
 
 };

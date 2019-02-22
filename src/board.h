@@ -18,12 +18,13 @@ class Board {
 
 public:
     Board();
-
-    size_t getSize();
+    Board(size_t);
+    Board(size_t, size_t);
+    size_t size();
 
 private:
-    size_t _width = 0;
     size_t _length = 0;
+    size_t _width = 0;
 
 };
 
