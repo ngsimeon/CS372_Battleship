@@ -7,4 +7,4 @@ include_directories(.)
 
 add_executable(Battleship ship.cpp ship.h
         battleship_tests.cpp
-        catch.hpp battleship.cpp board.cpp board.h)
+        catch.hpp main.cpp board.cpp board.h)

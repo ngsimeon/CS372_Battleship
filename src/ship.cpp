@@ -26,12 +26,15 @@ std::size_t Ship::getSize()
     return _size;
 }
 
+// hit()
+// Attacks the ship. If true, the position on the ship has been hit.
 void Ship::hit(size_t position)
 {
     _hits[position] = true;
 }
 
-
+// getHits()
+// Returns if a position on the ship has been hit.
 bool Ship::getHits(size_t position)
 {
     return _hits[position];

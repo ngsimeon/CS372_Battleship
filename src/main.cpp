@@ -1,4 +1,4 @@
-// battleship.cpp
+// main.cpp
 // Simeon Ng
 // Jason Herning
 // CS372 Software Construction
