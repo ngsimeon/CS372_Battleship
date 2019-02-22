@@ -31,10 +31,10 @@ TEST_CASE("Testing General Ship Functions") {
     REQUIRE_FALSE(testShip2.getHits(5));
 }
 
-Board board1();
+Board board1;
 
 TEST_CASE("Testing Board Size and Coordinates") {
 
     SECTION("Default Size is 10x10 = 100 Tiles")
-    REQUIRE(board1.size());
+    REQUIRE(board1.getSize() == 100);
 }

@@ -14,6 +14,8 @@ class Board {
 public:
     Board();
 
+    size_t getSize();
+
 private:
     size_t _width = 0;
     size_t _length = 0;

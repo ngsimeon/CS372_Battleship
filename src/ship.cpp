@@ -6,16 +6,21 @@
 
 #include "ship.h"
 
+// 2-Parameter ctor
 Ship::Ship(size_t position, size_t size):_position(position),_size(size)
 {
     _hits.resize(_size);
 }
 
+// getPosition()
+// Returns ship position
 std::size_t Ship::getPosition()
 {
     return _position;
 }
 
+// getSize()
+// Returns ship size
 std::size_t Ship::getSize()
 {
     return _size;
