@@ -3,8 +3,15 @@ project(Battleship)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(.)
+#include_directories(.)
 
-add_executable(Battleship ship.cpp ship.h
-        battleship_tests.cpp
-        catch.hpp main.cpp board.cpp board.h)
+
+#with test
+#add_executable(Battleship battleship_tests.cpp
+#        ship.cpp ship.h
+#        board.cpp board.h)
+
+#with main
+add_executable(Battleship main.cpp
+        ship.cpp ship.h
+        board.cpp board.h game.cpp game.h)

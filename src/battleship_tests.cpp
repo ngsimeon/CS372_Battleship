@@ -5,6 +5,7 @@
 // Updated 2/17/19
 // Catch2 Tests for Battleship Game
 
+#define CATCH_CONFIG_MAIN // Tell catch to provide a main()
 #include "catch.hpp"
 #include "ship.h"
 #include "board.h"
