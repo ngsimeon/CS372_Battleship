@@ -5,3 +5,10 @@
 // Player Class Source File
 
 #include "player.h"
+
+Player::Player(const Board& ship, const Board& track) :
+    _shipBoard(ship), _trackBoard(track) {}
+
+void Player::attackShip() {
+
+}
