@@ -14,10 +14,12 @@ Ship::Ship(Coords c1, Coords c2) :
 
 // getLength()
 // Returns ship length
-std::size_t Ship::getLength() const {
+std::size_t Ship::getLength() {
     if (_end.x - _begin.x == 0) {
+        _orientation = false;
         return _end.y - _begin.y + 1;
     }
+    _orientation = true;
     return _end.x - _begin.x + 1;
 
 }
@@ -36,14 +38,25 @@ Coords Ship::getEnd() const {
 
 // attack()
 // Attacks the ship. If true, the position on the ship has been hit.
-void Ship::attack(const size_t& position) {
-    _hits[position] = true;
+void Ship::attack(const Coords& c) {
+    if (c.x <= _end.x && c.y <= _end.y) {
+        if (_orientation) {
+            _hits[_hits.size() - _end.x - c.x - 1] = true;
+        }
+        else {
+            _hits[_hits.size() - _end.y - c.y - 1] = true;
+        }
+    }
 }
 
-// getHits()
-// Returns if a position on the ship has been hit.
-bool Ship::getHits(const size_t& position) const {
-    return _hits[position];
+// isSunk()
+// Returns true if entire ship has been hit.
+bool Ship::isSunk() const {
+    for (auto i : _hits) {
+        if (!i)
+            return false;
+    }
+    return true;
 }
 
 

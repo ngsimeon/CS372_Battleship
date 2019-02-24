@@ -1,7 +1,7 @@
 // ship.h
 // Simeon Ng
 // Jason Herning
-// Updated: 2/22/19
+// Updated: 2/23/19
 // Ship Class Header File
 
 #ifndef CS372_BATTLESHIP_SHIP_H
@@ -29,16 +29,18 @@ class Ship {
 public:
     Ship(Coords c1, Coords c2);
 
-    size_t getLength() const;
+    size_t getLength();
     Coords getBegin() const;
     Coords getEnd() const;
 
-    void attack(const size_t& position);
-    bool getHits(const size_t& position) const;
+    void attack(const Coords& c);
+    bool isSunk() const;
 
 private:
-    const Coords _begin;
-    const Coords _end;
+    const Coords _begin;    // Coords of Beginning of ship
+    const Coords _end;      // Coords of End of ship
+    bool _orientation;      // Orientation of ship;
+                            // True == Horizontal, False == Vertical
     vector<bool> _hits;
 
 };

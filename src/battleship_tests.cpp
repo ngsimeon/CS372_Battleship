@@ -2,10 +2,10 @@
 // Simeon Ng
 // Jason Herning
 // CS372 Software Construction
-// Updated 2/17/19
+// Updated 2/23/19
 // Catch2 Tests for Battleship Game
 
-#define CATCH_CONFIG_MAIN // Tell catch to provide a main()
+#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "ship.h"
 #include "board.h"
@@ -31,13 +31,20 @@ TEST_CASE("Testing General Ship Functions") {
     REQUIRE(testShip2.getBegin() == c3);
     REQUIRE(testShip2.getEnd() == c4);
 
-    testShip2.attack(1);
-    testShip2.attack(3);
+    c2.x = 1, c2.y = 0;
+    c3.x = 2, c3.y = 0;
+    testShip1.attack(c1);
+    testShip1.attack(c2);
+    testShip1.attack(c3);
+
+    c1.x = 4, c1.y = 4;
+    c2.x = 4, c2.y = 5;
+    testShip2.attack(c1);
+    testShip2.attack(c2);
 
     SECTION("Test Hitting the Ship")
-    REQUIRE(testShip2.getHits(1));
-    REQUIRE(testShip2.getHits(3));
-    REQUIRE(!testShip2.getHits(4));
+    REQUIRE(testShip1.isSunk());
+    REQUIRE(!testShip2.isSunk());
 }
 
 TEST_CASE("Testing Board Size and Coordinates") {
