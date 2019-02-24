@@ -1,7 +1,7 @@
 // ship.cpp
 // Simeon Ng
 // Jason Herning
-// Updated: 2/22/19
+// Updated: 2/23/19
 // Ship Class Source File
 
 #include "ship.h"
