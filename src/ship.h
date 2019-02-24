@@ -27,7 +27,7 @@ using std::vector;
 class Ship {
 
 public:
-    Ship(size_t len, Coords c1, Coords c2);
+    Ship(Coords c1, Coords c2);
 
     size_t getLength() const;
     Coords getBegin() const;
@@ -37,7 +37,6 @@ public:
     bool getHits(const size_t& position) const;
 
 private:
-    const size_t _length;
     const Coords _begin;
     const Coords _end;
     vector<bool> _hits;

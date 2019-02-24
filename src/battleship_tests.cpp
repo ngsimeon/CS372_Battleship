@@ -16,17 +16,17 @@ TEST_CASE("Testing General Ship Functions") {
     c1.x = 0, c1.y = 0;
     c2.x = 2, c1.y = 0;
     c3.x = 4, c3.y = 4;
-    c4.x = 4, c4.y = 9;
+    c4.x = 4, c4.y = 8;
 
-    Ship testShip1(2, c1, c2);
-    Ship testShip2(5, c3, c4);
+    Ship testShip1(c1, c2);
+    Ship testShip2(c3, c4);
 
     SECTION("Length = 2, Begin = (0, 0), End = (2, 0)")
-    REQUIRE(testShip1.getLength() == 2);
+    REQUIRE(testShip1.getLength() == 3);
     REQUIRE(testShip1.getBegin() == c1);
     REQUIRE(testShip1.getEnd() == c2);
 
-    SECTION("Length = 5, Begin = (4, 4), End = (4, 9)")
+    SECTION("Length = 5, Begin = (4, 4), End = (4, 8)")
     REQUIRE(testShip2.getLength() == 5);
     REQUIRE(testShip2.getBegin() == c3);
     REQUIRE(testShip2.getEnd() == c4);

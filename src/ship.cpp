@@ -7,15 +7,19 @@
 #include "ship.h"
 
 // 2-Parameter ctor
-Ship::Ship(size_t len, Coords c1, Coords c2) :
-    _length(len), _begin(c1), _end(c2) {
-    _hits.resize(_length);
+Ship::Ship(Coords c1, Coords c2) :
+    _begin(c1), _end(c2) {
+    _hits.resize(this->getLength());
 }
 
 // getLength()
 // Returns ship length
 std::size_t Ship::getLength() const {
-    return _length;
+    if (_end.x - _begin.x == 0) {
+        return _end.y - _begin.y + 1;
+    }
+    return _end.x - _begin.x + 1;
+
 }
 
 // getBegin()
