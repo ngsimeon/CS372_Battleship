@@ -18,7 +18,8 @@ public:
     //runs game loop
     loop();
 
-    drawBoard(player p) //Jason
+    int getTurn();
+    // drawBoard(player p) //Jason
 
 };
 

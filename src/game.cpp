@@ -13,8 +13,6 @@ Game::Game()
 
 }
 
-
-
 int Game::loop() {
     return 0;
 }

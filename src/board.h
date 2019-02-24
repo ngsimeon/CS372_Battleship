@@ -12,6 +12,10 @@
 struct Coords {
     size_t x;
     size_t y;
+
+    bool operator==(const Coords& c) const {
+        return x == c.x && y == c.y;
+    }
 };
 
 class Board {
@@ -20,7 +24,7 @@ public:
     Board();
     Board(size_t);
     Board(size_t, size_t);
-    size_t size();
+    size_t size() const;
 
 private:
     size_t _length = 0;

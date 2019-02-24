@@ -11,6 +11,7 @@
 #include <cstddef>
 #include <vector>
 #include <cmath>
+#include "board.h"
 
 using std::cout;
 using std::endl;
@@ -26,17 +27,19 @@ using std::vector;
 class Ship {
 
 public:
-    Ship(size_t position, size_t length);
+    Ship(size_t len, Coords c1, Coords c2);
 
-    size_t getLength();
-    size_t getPosition();
+    size_t getLength() const;
+    Coords getBegin() const;
+    Coords getEnd() const;
 
-    void hit(size_t position);
-    bool getHits(size_t position);
+    void attack(const size_t& position);
+    bool getHits(const size_t& position) const;
 
 private:
-    size_t _position;
-    size_t _length;
+    const size_t _length;
+    const Coords _begin;
+    const Coords _end;
     vector<bool> _hits;
 
 };

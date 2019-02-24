@@ -12,19 +12,27 @@
 
 TEST_CASE("Testing General Ship Functions") {
 
-    Ship testShip1(1,1);
-    Ship testShip2(5,5);
+    Coords c1, c2, c3, c4;
+    c1.x = 0, c1.y = 0;
+    c2.x = 2, c1.y = 0;
+    c3.x = 4, c3.y = 4;
+    c4.x = 4, c4.y = 9;
 
-    SECTION("Length = 1, Position = 1")
-    REQUIRE(testShip1.getLength() == 1);
-    REQUIRE(testShip1.getPosition() == 1);
+    Ship testShip1(2, c1, c2);
+    Ship testShip2(5, c3, c4);
 
-    SECTION("Length = 5, Position = 5")
+    SECTION("Length = 2, Begin = (0, 0), End = (2, 0)")
+    REQUIRE(testShip1.getLength() == 2);
+    REQUIRE(testShip1.getBegin() == c1);
+    REQUIRE(testShip1.getEnd() == c2);
+
+    SECTION("Length = 5, Begin = (4, 4), End = (4, 9)")
     REQUIRE(testShip2.getLength() == 5);
-    REQUIRE(testShip2.getPosition() == 5);
+    REQUIRE(testShip2.getBegin() == c3);
+    REQUIRE(testShip2.getEnd() == c4);
 
-    testShip2.hit(1);
-    testShip2.hit(3);
+    testShip2.attack(1);
+    testShip2.attack(3);
 
     SECTION("Test Hitting the Ship")
     REQUIRE(testShip2.getHits(1));

@@ -18,6 +18,6 @@ Board::Board(size_t length) : _length(length), _width(length) {}
 // Creates a board that is length*width in size.
 Board::Board(size_t length, size_t width) : _length(length), _width(width) {}
 
-size_t Board::size() {
+size_t Board::size() const {
     return _length * _width;
 }
