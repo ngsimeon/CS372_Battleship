@@ -41,10 +41,10 @@ Coords Ship::getEnd() const {
 void Ship::attack(const Coords& c) {
     if (c.x <= _end.x && c.y <= _end.y) {
         if (_orientation) {
-            _hits[_hits.size() - _end.x - c.x - 1] = true;
+            _hits[_hits.size() - _end.x + c.x - 1] = true;
         }
         else {
-            _hits[_hits.size() - _end.y - c.y - 1] = true;
+            _hits[_hits.size() - _end.y + c.y - 1] = true;
         }
     }
 }
