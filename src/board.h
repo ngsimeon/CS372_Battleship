@@ -4,10 +4,18 @@
 // Updated: 2/22/19
 // Board Class Header File
 
+// TODO:
+// - addShip function - check if ship coordinate is valid within board size
+// - list of coordinates that have ships on them
+// - 
+
 #ifndef BATTLESHIP_BOARD_H
 #define BATTLESHIP_BOARD_H
 
 #include <cstddef>
+#include <vector>
+#include "ship.h"
+using std::vector;
 
 struct Coords {
     size_t x;
@@ -29,6 +37,7 @@ public:
 private:
     size_t _length = 0;
     size_t _width = 0;
+    vector<Ship> _ships;
 
 };
 

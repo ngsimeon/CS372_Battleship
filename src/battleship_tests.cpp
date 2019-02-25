@@ -47,7 +47,7 @@ TEST_CASE("Testing General Ship Functions") {
     REQUIRE(!testShip2.isSunk());
 }
 
-TEST_CASE("Testing Board Size and Coordinates") {
+TEST_CASE("Testing Board Size, Coordinates, and adding Ships") {
 
     Board board1;
     SECTION("Default Size is 10x10 = 100 Tiles")
@@ -60,4 +60,16 @@ TEST_CASE("Testing Board Size and Coordinates") {
     Board board3(8, 6);
     SECTION("2-Param Ctor")
     REQUIRE(board3.size() == 48);
+
+    Coords c1, c2, c3, c4;
+    c1.x = 0, c1.y = 0;
+    c2.x = 2, c1.y = 0;
+    c3.x = 4, c3.y = 4;
+    c4.x = 4, c4.y = 8;
+
+    Ship testShip1(c1, c2);
+    Ship testShip2(c3, c4);
+
+    SECTION("Adding a length 2 ship to the board.")
+    REQUIRE()
 }
