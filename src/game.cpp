@@ -14,7 +14,9 @@ Game::Game() = default;
 
 void Game::gameLoop() {
     // Player 1 places ships
+    cout << "Player 1, place your ships!" << endl;
     // Player 2 places ships
+    cout << "Player 2, place your ships!" << endl;
 
     cout << "Game started" << endl;
 
@@ -28,4 +30,12 @@ void Game::gameLoop() {
     // ----> Hide p2 board
 
     // - check if all ships are sunken.
+}
+
+void Game::placeDefaultShips(const Player &) {
+    // Place carrier
+    // Place battleship
+    // Place destroyer
+    // Place submarine
+    // Place patrol boat
 }

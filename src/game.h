@@ -25,6 +25,8 @@ public:
 
 public:
     void gameLoop();
+    void placeDefaultShips(const Player &);
+
 
     // ---- Game: Data Members ----
 
