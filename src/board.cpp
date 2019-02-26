@@ -6,6 +6,8 @@
 
 #include "board.h"
 
+// ---- Board: Ctors ----
+
 // Default ctor
 // Default board is 10x10 in size.
 Board::Board() : _length(10), _width(10) {}
@@ -18,6 +20,8 @@ Board::Board(size_t length) : _length(length), _width(length) {}
 // Creates a board that is length*width in size.
 Board::Board(size_t length, size_t width) : _length(length), _width(width) {}
 
+// ---- Board: General Public Member Functions ----
+
 // size()
 // Returns size of board.
 size_t Board::size() const {
@@ -28,4 +32,31 @@ size_t Board::size() const {
 // Adds a ship to the board.
 void Board::addShip(const Ship& ship) {
     _ships.push_back(ship);
+
+    // If horizontal
+    if(ship.getOrientation()) {
+        this->addCoordHorizontal(ship);
+    }
+    else {
+        this->addCoordVertical(ship);
+    }
+}
+
+// addCoordHorizontal
+// Adds a ships coordinates to the board if the orientation is horizontal.
+void Board::addCoordHorizontal(const Ship& ship) {
+    auto begin = ship.getBegin();
+    auto end = ship.getEnd();
+    Coords addCoord = begin;
+
+    while(addCoord != end) {
+        // do something
+        break;
+    }
+}
+
+// addCoordVertical
+// Adds a ships coordinates to the board if the orientation is vertical.
+void Board::addCoordVertical(const Ship & ship) {
+
 }

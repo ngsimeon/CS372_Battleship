@@ -16,10 +16,9 @@ using std::cout;
 using std::endl;
 using std::vector;
 
-//To Do:
-// -find way to hold locations of shots
-//
+// ---- Struct Coords ----
 
+// Coordinate system for ships to be placed on.
 struct Coords {
     size_t x;
     size_t y;
@@ -27,23 +26,34 @@ struct Coords {
     bool operator==(const Coords& c) const {
         return x == c.x && y == c.y;
     }
+
+    bool operator!=(const Coords& c) {
+        return !(*this == c);
+    }
 };
 
-//Ship
+// ---- Class Ship ----
+
 //size will always be from size 1-5
 //position will always be from 1-100
 class Ship {
 
+    // ---- Ship: Ctor ----
+
 public:
     Ship(Coords c1, Coords c2);
 
+    // ---- Ship: Public Member Functions ----
+
+public:
     size_t getLength();
     Coords getBegin() const;
     Coords getEnd() const;
     bool getOrientation() const;
-
     void attack(const Coords& c);
     bool isSunk() const;
+
+    // ---- Ship: Data Members ----
 
 private:
     const Coords _begin;    // Coords of Beginning of ship

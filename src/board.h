@@ -17,15 +17,26 @@
 #include "ship.h"
 using std::vector;
 
+// ---- Class Board ----
+
 class Board {
+
+    // ---- Board: Ctors ----
 
 public:
     Board();
     Board(size_t);
     Board(size_t, size_t);
 
+    // ---- Board: Public Member Functions ----
+
+public:
     size_t size() const;
     void addShip(const Ship& s);
+    void addCoordHorizontal(const Ship&);
+    void addCoordVertical(const Ship&);
+
+    // ---- Board: Data Members ----
 
 private:
     size_t _length = 0;         // Length of board

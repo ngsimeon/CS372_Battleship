@@ -73,5 +73,5 @@ TEST_CASE("Testing Board Size, Coordinates, and adding Ships") {
     SECTION("Adding a length 2 ship to the board.")
     board1.addShip(testShip1);
     Coords c5 = {1, 0};
-    //REQUIRE(board1.coordTaken(c5));
+    // REQUIRE(board1.coordTaken(c5));
 }
