@@ -17,27 +17,21 @@
 #include "ship.h"
 using std::vector;
 
-struct Coords {
-    size_t x;
-    size_t y;
-
-    bool operator==(const Coords& c) const {
-        return x == c.x && y == c.y;
-    }
-};
-
 class Board {
 
 public:
     Board();
     Board(size_t);
     Board(size_t, size_t);
+
     size_t size() const;
+    void addShip(const Ship& s);
 
 private:
-    size_t _length = 0;
-    size_t _width = 0;
-    vector<Ship> _ships;
+    size_t _length = 0;         // Length of board
+    size_t _width = 0;          // Width of board
+    vector<Ship> _ships;        // List of ships added to the board
+    vector<Coords> _shipCoords; // List of Coords that are taken by ships
 
 };
 

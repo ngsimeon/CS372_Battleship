@@ -11,7 +11,6 @@
 #include <cstddef>
 #include <vector>
 #include <cmath>
-#include "board.h"
 
 using std::cout;
 using std::endl;
@@ -20,6 +19,15 @@ using std::vector;
 //To Do:
 // -find way to hold locations of shots
 //
+
+struct Coords {
+    size_t x;
+    size_t y;
+
+    bool operator==(const Coords& c) const {
+        return x == c.x && y == c.y;
+    }
+};
 
 //Ship
 //size will always be from size 1-5
@@ -32,6 +40,7 @@ public:
     size_t getLength();
     Coords getBegin() const;
     Coords getEnd() const;
+    bool getOrientation() const;
 
     void attack(const Coords& c);
     bool isSunk() const;

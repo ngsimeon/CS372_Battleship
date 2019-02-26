@@ -6,11 +6,15 @@
 
 #include "ship.h"
 
+// ---- Ctor ----
+
 // 2-Parameter ctor
 Ship::Ship(Coords c1, Coords c2) :
     _begin(c1), _end(c2) {
     _hits.resize(this->getLength());
 }
+
+// ---- General Public Member Functions ----
 
 // getLength()
 // Returns ship length
@@ -21,7 +25,6 @@ std::size_t Ship::getLength() {
     }
     _orientation = true;
     return _end.x - _begin.x + 1;
-
 }
 
 // getBegin()
@@ -34,6 +37,10 @@ Coords Ship::getBegin() const {
 // Returns ships ending coordinate.
 Coords Ship::getEnd() const {
     return _end;
+}
+
+bool Ship::getOrientation() const {
+    return _orientation;
 }
 
 // attack()

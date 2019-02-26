@@ -18,6 +18,14 @@ Board::Board(size_t length) : _length(length), _width(length) {}
 // Creates a board that is length*width in size.
 Board::Board(size_t length, size_t width) : _length(length), _width(width) {}
 
+// size()
+// Returns size of board.
 size_t Board::size() const {
     return _length * _width;
+}
+
+// addShip()
+// Adds a ship to the board.
+void Board::addShip(const Ship& ship) {
+    _ships.push_back(ship);
 }
