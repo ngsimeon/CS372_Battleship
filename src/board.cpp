@@ -45,18 +45,23 @@ void Board::addShip(const Ship& ship) {
 // addCoordHorizontal
 // Adds a ships coordinates to the board if the orientation is horizontal.
 void Board::addCoordHorizontal(const Ship& ship) {
-    auto begin = ship.getBegin();
-    auto end = ship.getEnd();
-    Coords addCoord = begin;
+    auto addCoord = ship.getBegin();
+    _shipCoords.push_back(addCoord);
 
-    while(addCoord != end) {
-        // do something
-        break;
+    while(addCoord != ship.getEnd()) {
+        addCoord.x += 1;
+        _shipCoords.push_back(addCoord);
     }
 }
 
 // addCoordVertical
 // Adds a ships coordinates to the board if the orientation is vertical.
 void Board::addCoordVertical(const Ship & ship) {
+    auto addCoord = ship.getBegin();
+    _shipCoords.push_back(addCoord);
 
+    while(addCoord != ship.getEnd()) {
+        addCoord.y += 1;
+        _shipCoords.push_back(addCoord);
+    }
 }

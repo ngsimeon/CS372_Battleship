@@ -25,7 +25,7 @@ class Board {
 
 public:
     Board();
-    Board(size_t);
+    explicit Board(size_t);
     Board(size_t, size_t);
 
     // ---- Board: Public Member Functions ----
@@ -35,6 +35,7 @@ public:
     void addShip(const Ship& s);
     void addCoordHorizontal(const Ship&);
     void addCoordVertical(const Ship&);
+    bool isCoordTaken() const;
 
     // ---- Board: Data Members ----
 
@@ -45,6 +46,5 @@ private:
     vector<Coords> _shipCoords; // List of Coords that are taken by ships
 
 };
-
 
 #endif //BATTLESHIP_BOARD_H

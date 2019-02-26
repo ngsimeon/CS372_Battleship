@@ -23,11 +23,22 @@ struct Coords {
     size_t x;
     size_t y;
 
+    // 2-param Ctor
+    Coords(size_t x, size_t y) : x(x), y(y) {}
+
+    // Operator=
+    Coords& operator=(const Coords& c) {
+        x = c.x, y = c.y;
+        return *this;
+    }
+
+    // Operator==
     bool operator==(const Coords& c) const {
         return x == c.x && y == c.y;
     }
 
-    bool operator!=(const Coords& c) {
+    // Operator!=
+    bool operator!=(const Coords& c) const {
         return !(*this == c);
     }
 };

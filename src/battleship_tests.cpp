@@ -12,11 +12,10 @@
 
 TEST_CASE("Testing General Ship Functions") {
 
-    Coords c1, c2, c3, c4;
-    c1.x = 0, c1.y = 0;
-    c2.x = 2, c1.y = 0;
-    c3.x = 4, c3.y = 4;
-    c4.x = 4, c4.y = 8;
+    Coords c1 = {0, 0};
+    Coords c2 = {2, 0};
+    Coords c3 = {4, 4};
+    Coords c4 = {4, 8};
 
     Ship testShip1(c1, c2);
     Ship testShip2(c3, c4);
@@ -61,11 +60,10 @@ TEST_CASE("Testing Board Size, Coordinates, and adding Ships") {
     SECTION("2-Param Ctor")
     REQUIRE(board3.size() == 48);
 
-    Coords c1, c2, c3, c4;
-    c1.x = 0, c1.y = 0;
-    c2.x = 2, c1.y = 0;
-    c3.x = 4, c3.y = 4;
-    c4.x = 4, c4.y = 8;
+    Coords c1 = {0, 0};
+    Coords c2 = {2, 0};
+    Coords c3 = {4, 4};
+    Coords c4 = {4, 8};
 
     Ship testShip1(c1, c2);
     Ship testShip2(c3, c4);
@@ -73,5 +71,5 @@ TEST_CASE("Testing Board Size, Coordinates, and adding Ships") {
     SECTION("Adding a length 2 ship to the board.")
     board1.addShip(testShip1);
     Coords c5 = {1, 0};
-    // REQUIRE(board1.coordTaken(c5));
+    //REQUIRE(board1.coordTaken(c5));
 }
