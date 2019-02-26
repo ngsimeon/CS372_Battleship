@@ -8,6 +8,9 @@
 #define BATTLESHIP_GAME_H
 
 #include "player.h"
+#include <iostream>
+using std::cout;
+using std::endl;
 
 // ---- Class Game ----
 

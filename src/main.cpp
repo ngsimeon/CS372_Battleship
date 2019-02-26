@@ -1,23 +1,19 @@
-//
-// Created by Jason on 2/22/2019.
-//
+// main.cpp
+// Simeon Ng
+// Jason Herning
+// Updated: 2/26/19
+// Game Class Source File
 
 #include <iostream>
-#include "board.h"
-#include "ship.h"
-
+#include "game.h"
 using std::cout;
 
-int main()
-{
-    cout << "Welcome to Battle Ship!\n";
+int main() {
+    cout << "Welcome to Battleship!\n";
 
-    //player 1 place your ships
-    //players 2 place your ships
+    Game g;
 
-    bool win = false;
-
-    while(win == false)
+    g.gameLoop();
 
     return 0;
 }

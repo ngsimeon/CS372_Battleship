@@ -16,6 +16,8 @@ void Game::gameLoop() {
     // Player 1 places ships
     // Player 2 places ships
 
+    cout << "Game started" << endl;
+
     // Game loop starts
     // - Alternating fire by p1 and p2
     // ----> Print p1 board
