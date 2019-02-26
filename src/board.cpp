@@ -102,10 +102,22 @@ void Board::attackShip(const Coords & c) {
 // isSunk()
 // Returns true if the given ship is sunk. False otherwise.
 bool Board::isSunk(const Ship & ship) {
-    for(auto& i : _ships) {
+    for(auto & i : _ships) {
         if(i == ship) {
             return i.isSunk();
         }
     }
     return false;
+}
+
+// allSunk()
+// Returns true if all ships have been sunk. False otherwise.
+bool Board::allSunk() {
+    for(auto & i : _ships) {
+        if(i.isSunk())
+            continue;
+        else
+            return false;
+    }
+    return true;
 }

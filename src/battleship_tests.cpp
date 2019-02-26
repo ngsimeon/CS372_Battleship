@@ -88,4 +88,5 @@ TEST_CASE("Testing Board Size, Coordinates, and Ships") {
     board1.attack(c1), board1.attack(c2), board1.attack(c5);
     SECTION("Attacking (0, 0), (1, 0) and (2, 0) sinks ship")
     REQUIRE(board1.isSunk(testShip1));
+    REQUIRE(board1.allSunk());
 }

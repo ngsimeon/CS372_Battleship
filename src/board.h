@@ -41,6 +41,7 @@ public:
     bool attack(const Coords &);
     void attackShip(const Coords &);
     bool isSunk(const Ship &);
+    bool allSunk();
 
     // ---- Board: Data Members ----
 
