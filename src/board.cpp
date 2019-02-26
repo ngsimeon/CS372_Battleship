@@ -42,7 +42,7 @@ void Board::addShip(const Ship& ship) {
     }
 }
 
-// addCoordHorizontal
+// addCoordHorizontal()
 // Adds a ships coordinates to the board if the orientation is horizontal.
 void Board::addCoordHorizontal(const Ship& ship) {
     auto addCoord = ship.getBegin();
@@ -54,7 +54,7 @@ void Board::addCoordHorizontal(const Ship& ship) {
     }
 }
 
-// addCoordVertical
+// addCoordVertical()
 // Adds a ships coordinates to the board if the orientation is vertical.
 void Board::addCoordVertical(const Ship & ship) {
     auto addCoord = ship.getBegin();
@@ -64,4 +64,14 @@ void Board::addCoordVertical(const Ship & ship) {
         addCoord.y += 1;
         _shipCoords.push_back(addCoord);
     }
+}
+
+// isCoordTaken()
+// Returns true if coordinate given is taken up by a ship.
+bool Board::isCoordTaken(const Coords& c) const {
+    auto pred = [c](const Coords& c2) {
+        return c.x == c2.x && c.y == c2.y;
+    };
+    auto iter = std::find_if(_shipCoords.begin(), _shipCoords.end(), pred);
+    return iter != _shipCoords.end();
 }

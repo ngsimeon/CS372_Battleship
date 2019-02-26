@@ -14,8 +14,10 @@
 
 #include <cstddef>
 #include <vector>
+#include <algorithm>
 #include "ship.h"
 using std::vector;
+using std::find;
 
 // ---- Class Board ----
 
@@ -35,7 +37,7 @@ public:
     void addShip(const Ship& s);
     void addCoordHorizontal(const Ship&);
     void addCoordVertical(const Ship&);
-    bool isCoordTaken() const;
+    bool isCoordTaken(const Coords&) const;
 
     // ---- Board: Data Members ----
 
