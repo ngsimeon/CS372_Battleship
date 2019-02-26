@@ -1,7 +1,7 @@
 // ship.h
 // Simeon Ng
 // Jason Herning
-// Updated: 2/23/19
+// Updated: 2/26/19
 // Ship Class Header File
 
 #ifndef CS372_BATTLESHIP_SHIP_H

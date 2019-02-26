@@ -1,7 +1,7 @@
 // player.h
 // Simeon Ng
 // Jason Herning
-// Updated: 2/23/19
+// Updated: 2/26/19
 // Player Class Source File
 
 #ifndef BATTLESHIP_PLAYER_H
@@ -9,15 +9,25 @@
 
 #include "board.h"
 
-class Player {
-public:
-    Player(const Board&, const Board&);
+// ---- Class Player ----
 
-    void attackShip();
+class Player {
+
+    // ---- Player: Ctor ----
+
+public:
+    Player();
+
+    // ---- Player: Public Member Functions ----
+
+public:
+    void addShip(const Ship &);
+    bool fireAtEnemy(const Coords &);
+
+    // ---- Player: Data Members ----
 
 private:
-    Board _shipBoard;
-    Board _trackBoard;
+    Board _shipBoard;   // Default 10x10 board. Tracks ships, hits and misses.
 };
 
 

@@ -1,13 +1,8 @@
 // board.h
 // Simeon Ng
 // Jason Herning
-// Updated: 2/22/19
+// Updated: 2/26/19
 // Board Class Header File
-
-// TODO:
-// - addShip function - check if ship coordinate is valid within board size
-// - list of coordinates that have ships on them
-// - 
 
 #ifndef BATTLESHIP_BOARD_H
 #define BATTLESHIP_BOARD_H

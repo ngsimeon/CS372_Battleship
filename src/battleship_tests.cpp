@@ -2,13 +2,14 @@
 // Simeon Ng
 // Jason Herning
 // CS372 Software Construction
-// Updated 2/23/19
+// Updated 2/26/19
 // Catch2 Tests for Battleship Game
 
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "ship.h"
 #include "board.h"
+#include "player.h"
 
 TEST_CASE("Testing General Ship Functions") {
 
@@ -89,4 +90,17 @@ TEST_CASE("Testing Board Size, Coordinates, and Ships") {
     SECTION("Attacking (0, 0), (1, 0) and (2, 0) sinks ship")
     REQUIRE(board1.isSunk(testShip1));
     REQUIRE(board1.allSunk());
+}
+
+TEST_CASE("Testing Player Class: Firing at opponent.") {
+
+    Player p1;
+    Coords c1 = {0, 0};
+    Coords c2 = {2, 0};
+    Ship testShip1(c1, c2);
+    p1.addShip(testShip1);
+
+    Coords c3 = {1, 0};
+    SECTION("Firing at (1, 0)")
+    REQUIRE(p1.fireAtEnemy(c3));
 }
