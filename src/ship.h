@@ -61,11 +61,11 @@ public:
     Coords getBegin() const;
     Coords getEnd() const;
     bool getOrientation() const;
-    bool attack(const Coords& c);
+    bool attack(const Coords & c);
     bool isSunk();
 
 public:
-    bool operator==(const Ship&) const;
+    bool operator==(const Ship &) const;
 
     // ---- Ship: Data Members ----
 

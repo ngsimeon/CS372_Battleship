@@ -46,7 +46,7 @@ TEST_CASE("Testing General Ship Functions") {
     REQUIRE(!testShip2.isSunk());
 }
 
-TEST_CASE("Testing Board Size, Coordinates, and adding Ships") {
+TEST_CASE("Testing Board Size, Coordinates, and Ships") {
 
     Board board1;
     SECTION("Default Size is 10x10 = 100 Tiles")
@@ -84,4 +84,8 @@ TEST_CASE("Testing Board Size, Coordinates, and adding Ships") {
     Coords c7 = {0, 1};
     SECTION("Attacking board1 at (0, 1)")
     REQUIRE_FALSE(board1.attack(c7));
+
+    board1.attack(c1), board1.attack(c2), board1.attack(c5);
+    SECTION("Attacking (0, 0), (1, 0) and (2, 0) sinks ship")
+    REQUIRE(board1.isSunk(testShip1));
 }

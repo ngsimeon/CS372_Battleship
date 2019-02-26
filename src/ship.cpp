@@ -47,7 +47,7 @@ bool Ship::getOrientation() const {
 
 // attack()
 // Attacks the ship. If true, the position on the ship has been hit.
-bool Ship::attack(const Coords& c) {
+bool Ship::attack(const Coords & c) {
     if (c.x <= _end.x && c.y <= _end.y) {
         if (_orientation) {
             _hits[_hits.size() - _end.x + c.x - 1] = true;
@@ -75,7 +75,7 @@ bool Ship::isSunk() {
 // ---- Ship: Operators ----
 
 // Operator==
-bool Ship::operator==(const Ship& s) const {
+bool Ship::operator==(const Ship & s) const {
     return _begin == s.getBegin() && _end == s.getEnd();
 }
 

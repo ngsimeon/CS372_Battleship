@@ -30,7 +30,7 @@ size_t Board::size() const {
 
 // addShip()
 // Adds a ship to the board.
-void Board::addShip(const Ship& ship) {
+void Board::addShip(const Ship & ship) {
     _ships.push_back(ship);
 
     // If horizontal
@@ -44,7 +44,7 @@ void Board::addShip(const Ship& ship) {
 
 // addCoordHorizontal()
 // Adds a ships coordinates to the board if the orientation is horizontal.
-void Board::addCoordHorizontal(const Ship& ship) {
+void Board::addCoordHorizontal(const Ship & ship) {
     auto addCoord = ship.getBegin();
     _shipCoords.push_back(addCoord);
 
@@ -68,8 +68,8 @@ void Board::addCoordVertical(const Ship & ship) {
 
 // isCoordTaken()
 // Returns true if coordinate given is taken up by a ship.
-bool Board::isCoordTaken(const Coords& c) const {
-    auto pred = [c](const Coords& c2) {
+bool Board::isCoordTaken(const Coords & c) const {
+    auto pred = [c](const Coords & c2) {
         return c.x == c2.x && c.y == c2.y;
     };
     auto iter = std::find_if(_shipCoords.begin(), _shipCoords.end(), pred);
@@ -78,7 +78,7 @@ bool Board::isCoordTaken(const Coords& c) const {
 
 // attack()
 // Returns true if coordinate given is hit. False otherwise.
-bool Board::attack(const Coords& c) {
+bool Board::attack(const Coords & c) {
     if(isCoordTaken(c)) {
         attackShip(c);
         _coordsFiredAt.push_back(c);
@@ -97,4 +97,15 @@ void Board::attackShip(const Coords & c) {
             break;
         }
     }
+}
+
+// isSunk()
+// Returns true if the given ship is sunk. False otherwise.
+bool Board::isSunk(const Ship & ship) {
+    for(auto& i : _ships) {
+        if(i == ship) {
+            return i.isSunk();
+        }
+    }
+    return false;
 }

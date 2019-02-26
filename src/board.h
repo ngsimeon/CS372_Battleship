@@ -34,12 +34,13 @@ public:
 
 public:
     size_t size() const;
-    void addShip(const Ship& s);
-    void addCoordHorizontal(const Ship&);
-    void addCoordVertical(const Ship&);
+    void addShip(const Ship &);
+    void addCoordHorizontal(const Ship &);
+    void addCoordVertical(const Ship &);
     bool isCoordTaken(const Coords&) const;
     bool attack(const Coords &);
     void attackShip(const Coords &);
+    bool isSunk(const Ship &);
 
     // ---- Board: Data Members ----
 
@@ -50,7 +51,6 @@ private:
     vector<Coords> _shipCoords;      // List of Coords that are taken by ships
     vector<Coords> _coordsFiredAt;   // List of Coords that have been fired at. Acts as upper board.
     vector<Coords> _coordsHit;       // List of Coords that have been registered as hits.
-
 
 };
 
