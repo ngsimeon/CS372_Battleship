@@ -12,7 +12,8 @@ add_executable(Battleship
         battleship_tests.cpp
         ship.cpp ship.h
         board.cpp board.h
-        player.cpp player.h)
+        player.cpp player.h
+        game.cpp game.h)
 
 ##with main
 #add_executable(Battleship main.cpp

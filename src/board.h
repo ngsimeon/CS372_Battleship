@@ -28,6 +28,12 @@ public:
     // ---- Board: Public Member Functions ----
 
 public:
+    size_t getLength() const;
+    size_t getWidth() const;
+    vector<Ship> getShips() const;
+    vector<Coords> getCoordsFiredAt() const;
+    vector<Coords> getCoordsHit() const;
+
     size_t size() const;
     void addShip(const Ship &);
     void addCoordHorizontal(const Ship &);

@@ -1,22 +1,17 @@
-//
-// Created by Jason on 2/22/2019.
-//
+// game.h
+// Simeon Ng
+// Jason Herning
+// Updated: 2/26/19
+// Game Class Source File
 
 #include "game.h"
 
+// ---- Game: Ctor ----
 
+Game::Game() = default;
 
-Game::Game()
-{
+// ---- Game : Public Member Functions
 
+void Game::gameLoop() {
 
-
-}
-
-int Game::loop() {
-    return 0;
-}
-
-int Game::getTurn() {
-    return 0;
 }

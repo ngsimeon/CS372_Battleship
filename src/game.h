@@ -1,25 +1,33 @@
-//
-// Created by Jason on 2/22/2019.
-//
+// game.h
+// Simeon Ng
+// Jason Herning
+// Updated: 2/26/19
+// Game Class Source File
 
 #ifndef BATTLESHIP_GAME_H
 #define BATTLESHIP_GAME_H
 
+#include "player.h"
 
+// ---- Class Game ----
 
+class Game {
 
-class Game
-{
+    // ---- Game: Ctor ----
+
 public:
     Game();
 
+    // ---- Game: Public Member Functions ----
 
+public:
+    void gameLoop();
 
-    //runs game loop
-    loop();
+    // ---- Game: Data Members ----
 
-    int getTurn();
-    // drawBoard(player p) //Jason
+private:
+    Player _playerOne;
+    Player _playerTwo;
 
 };
 

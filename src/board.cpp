@@ -22,6 +22,26 @@ Board::Board(size_t length, size_t width) : _length(length), _width(width) {}
 
 // ---- Board: General Public Member Functions ----
 
+// getLength()
+// Returns length of board.
+size_t Board::getLength() const { return _length; }
+
+// getWidth()
+// Returns width of board.
+size_t Board::getWidth() const { return _width; }
+
+// getShips()
+// Returns a vector of ships.
+vector<Ship> Board::getShips() const { return _ships; }
+
+// getCoordsFiredAt()
+// Returns the coordinates that have been fired at.
+vector<Coords> Board::getCoordsFiredAt() const { return _coordsFiredAt; }
+
+// getCoordsHit()
+// Returns the coordinates that have been hit.
+vector<Coords> Board::getCoordsHit() const { return _coordsHit; }
+
 // size()
 // Returns size of board.
 size_t Board::size() const {

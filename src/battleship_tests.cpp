@@ -97,10 +97,17 @@ TEST_CASE("Testing Player Class: Firing at opponent.") {
     Player p1;
     Coords c1 = {0, 0};
     Coords c2 = {2, 0};
+    Coords c3 = {4, 4};
+    Coords c4 = {4, 8};
     Ship testShip1(c1, c2);
+    Ship testShip2(c3, c4);
     p1.addShip(testShip1);
+    p1.addShip(testShip2);
 
-    Coords c3 = {1, 0};
+    Coords c5 = {1, 0};
+    Coords c6 = {0, 1};
     SECTION("Firing at (1, 0)")
-    REQUIRE(p1.fireAtEnemy(c3));
+    REQUIRE(p1.fireAtEnemy(c5));
+    SECTION("Firing at (0, 1)")
+    REQUIRE_FALSE(p1.fireAtEnemy(c6));
 }
