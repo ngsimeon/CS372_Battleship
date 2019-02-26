@@ -61,8 +61,11 @@ public:
     Coords getBegin() const;
     Coords getEnd() const;
     bool getOrientation() const;
-    void attack(const Coords& c);
-    bool isSunk() const;
+    bool attack(const Coords& c);
+    bool isSunk();
+
+public:
+    bool operator==(const Ship&) const;
 
     // ---- Ship: Data Members ----
 
@@ -72,6 +75,7 @@ private:
     bool _orientation;      // Orientation of ship;
                             // True == Horizontal, False == Vertical
     vector<bool> _hits;
+    bool _sunk = false;             // True == sunk, False == still floating
 
 };
 

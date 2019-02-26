@@ -75,3 +75,26 @@ bool Board::isCoordTaken(const Coords& c) const {
     auto iter = std::find_if(_shipCoords.begin(), _shipCoords.end(), pred);
     return iter != _shipCoords.end();
 }
+
+// attack()
+// Returns true if coordinate given is hit. False otherwise.
+bool Board::attack(const Coords& c) {
+    if(isCoordTaken(c)) {
+        attackShip(c);
+        _coordsFiredAt.push_back(c);
+        _coordsHit.push_back(c);
+        return true;
+    }
+    _coordsFiredAt.push_back(c);
+    return false;
+}
+
+// attackShip()
+// Finds the original ship given a coordinate and attacks it.
+void Board::attackShip(const Coords & c) {
+    for(auto& i : _ships) {
+        if(i.attack(c)){
+            break;
+        }
+    }
+}

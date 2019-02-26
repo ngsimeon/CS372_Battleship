@@ -38,14 +38,19 @@ public:
     void addCoordHorizontal(const Ship&);
     void addCoordVertical(const Ship&);
     bool isCoordTaken(const Coords&) const;
+    bool attack(const Coords &);
+    void attackShip(const Coords &);
 
     // ---- Board: Data Members ----
 
 private:
-    size_t _length = 0;         // Length of board
-    size_t _width = 0;          // Width of board
-    vector<Ship> _ships;        // List of ships added to the board
-    vector<Coords> _shipCoords; // List of Coords that are taken by ships
+    size_t _length = 0;              // Length of board
+    size_t _width = 0;               // Width of board
+    vector<Ship> _ships;             // List of ships added to the board
+    vector<Coords> _shipCoords;      // List of Coords that are taken by ships
+    vector<Coords> _coordsFiredAt;   // List of Coords that have been fired at. Acts as upper board.
+    vector<Coords> _coordsHit;       // List of Coords that have been registered as hits.
+
 
 };
 
