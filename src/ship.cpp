@@ -11,7 +11,7 @@
 // 2-Parameter ctor
 Ship::Ship(Coords c1, Coords c2) :
     _begin(c1), _end(c2) {
-    _hits.resize(this->getLength());
+    _hits.resize(getLength());
 }
 
 // ---- Ship: Public Member Functions ----
