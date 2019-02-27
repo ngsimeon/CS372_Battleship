@@ -15,12 +15,11 @@ Game::Game() = default;
 void Game::gameLoop() {
     // Player 1 places ships
     cout << "Player 1, place your ships!" << endl;
-    cout << _playerOne.getBoard();
+    placeDefaultShips(_playerOne);
     // Player 2 places ships
     cout << "Player 2, place your ships!" << endl;
 
     cout << "Game started" << endl;
-
     // Game loop starts
     // - Alternating fire by p1 and p2
     // ----> Print p1 board
@@ -33,22 +32,22 @@ void Game::gameLoop() {
     // - check if all ships are sunken.
 }
 
-void Game::placeDefaultShips(const Player &) {
-
-    // Place battleship
-    // Place destroyer
-    // Place submarine
-    // Place patrol boat
+void Game::placeDefaultShips(Player & player) {
+    placeCarrier(player);
+    placeBattleship(player);
+    placeDestroyer(player);
+    placeSubmarine(player);
+    placePatrol(player);
 }
 
 Coords Game::getUserCoord() {
-    size_t coordX = getCoordX();
-    size_t coordY = getCoordY();
+    size_t coordX = getUserCoordX();
+    size_t coordY = getUserCoordY();
     Coords c(coordX, coordY);
     return c;
 }
 
-size_t Game::getCoordX() {
+size_t Game::getUserCoordX() {
     while(true) {
         string inputX;
         cout << "Enter X coordinate [0-" << _playerOne.getLength() << "]: ";
@@ -68,7 +67,7 @@ size_t Game::getCoordX() {
     }
 }
 
-size_t Game::getCoordY() {
+size_t Game::getUserCoordY() {
     while(true) {
         string inputY;
         cout << "Enter Y coordinate [0-" << _playerOne.getWidth() << "]: ";
@@ -89,24 +88,113 @@ size_t Game::getCoordY() {
     }
 }
 
-void Game::placeCarrier(const Player & player) {
+bool Game::getUserOrientation() {
+    while(true) {
+        string orientation;
+        cout << "[H]orizontal or [V]ertical?: ";
+        getline(cin, orientation);
+        if (!cin) {
+            std::cerr << "Input error. Try again." << endl;
+            continue;
+        }
+        switch(orientation[0]) {
+            case 'H':
+                return true;
+            case 'V':
+                return false;
+            default:
+                cout << "Not a valid orientation." << endl;
+                continue;
+        }
+    }
+}
+
+void Game::placeCarrier(Player & player) {
+    cout << "Place the bow(front) of your Carrier:" << endl;
     Coords c1 = getUserCoord();
+    bool orientation = getUserOrientation();
+    Coords c2 = {0, 0};
+    if (orientation) {
+        // If unable to place horizontally, place vertically.
+        if (c1.x+5 >= player.getLength()) {
+            if (c1.x-5 > 0) {
+                // Place horizontal/negative
+                c2 = {c1.x-5, c1.y};
+            }
+            else if (c1.y+5 >= player.getWidth())
+                // Place vertical/negative
+                c2 = {c1.x, c1.y - 5};
+            else {
+                // Place vertical/positive
+                c2 = {c1.x, c1.y + 5};
+            }
+        }
+        // Else place horizontal/positive
+        else {
+            c2 = {c1.x + 5, c1.y};
+        }
+    }
+    Ship ship(c1, c2);
+    player.addShip(ship);
 }
 
-void Game::placeBattleship(const Player & player) {
-
+void Game::placeBattleship(Player & player) {
+    cout << "Place the bow(front) of your Battleship:" << endl;
+    Coords c1 = getUserCoord();
+    bool orientation = getUserOrientation();
+    Coords c2 = {0, 0};
+    if (orientation) {
+        c2 = {c1.x + 4, c1.y};
+    }
+    else {
+        c2 = {c1.x, c1.y + 4};
+    }
+    Ship ship(c1, c2);
+    player.addShip(ship);
 }
 
-void Game::placeDestroyer(const Player & player) {
-
+void Game::placeDestroyer(Player & player) {
+    cout << "Place the bow(front) of your Destroyer:" << endl;
+    Coords c1 = getUserCoord();
+    bool orientation = getUserOrientation();
+    Coords c2 = {0, 0};
+    if (orientation) {
+        c2 = {c1.x + 3, c1.y};
+    }
+    else {
+        c2 = {c1.x, c1.y + 3};
+    }
+    Ship ship(c1, c2);
+    player.addShip(ship);
 }
 
-void Game::placeSubmarine(const Player & player) {
-
+void Game::placeSubmarine(Player & player) {
+    cout << "Place the bow(front) of your Submarine:" << endl;
+    Coords c1 = getUserCoord();
+    bool orientation = getUserOrientation();
+    Coords c2 = {0, 0};
+    if (orientation) {
+        c2 = {c1.x + 3, c1.y};
+    }
+    else {
+        c2 = {c1.x, c1.y + 3};
+    }
+    Ship ship(c1, c2);
+    player.addShip(ship);
 }
 
-void Game::placePatrol(const Player & player) {
-
+void Game::placePatrol(Player & player) {
+    cout << "Place the bow(front) of your Patrol Boat:" << endl;
+    Coords c1 = getUserCoord();
+    bool orientation = getUserOrientation();
+    Coords c2 = {0, 0};
+    if (orientation) {
+        c2 = {c1.x + 2, c1.y};
+    }
+    else {
+        c2 = {c1.x, c1.y + 2};
+    }
+    Ship ship(c1, c2);
+    player.addShip(ship);
 }
-
 
