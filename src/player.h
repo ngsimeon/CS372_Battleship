@@ -21,6 +21,9 @@ public:
     // ---- Player: Public Member Functions ----
 
 public:
+    size_t getLength() const;
+    size_t getWidth() const;
+
     void addShip(const Ship &);
     bool fireAtEnemy(const Coords &);
     Board getBoard()const;

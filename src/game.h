@@ -9,7 +9,13 @@
 
 #include "player.h"
 #include <iostream>
+#include <string>
+#include <sstream>
+using std::istringstream;
+using std::string;
+using std::getline;
 using std::cout;
+using std::cin;
 using std::endl;
 
 // ---- Class Game ----
@@ -30,7 +36,15 @@ public:
 public:
     void gameLoop();
     void placeDefaultShips(const Player &);
+    Coords getUserCoord();
+    size_t getCoordX();
+    size_t getCoordY();
 
+    void placeCarrier(const Player &);
+    void placeBattleship(const Player &);
+    void placeDestroyer(const Player &);
+    void placeSubmarine(const Player &);
+    void placePatrol(const Player &);
 
 
 

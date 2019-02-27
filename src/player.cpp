@@ -13,6 +13,18 @@ Player::Player() = default;
 
 // ---- Player: Public Member Functions ----
 
+// getLength()
+// Returns length of the board.
+size_t Player::getLength() const {
+    return _shipBoard.getLength();
+}
+
+// getWidth()
+// Returns length of the board.
+size_t Player::getWidth() const {
+    return _shipBoard.getWidth();
+}
+
 // addShip()
 // Adds a given ship to the board.
 void Player::addShip(const Ship & ship) {
