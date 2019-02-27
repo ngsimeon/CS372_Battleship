@@ -90,7 +90,6 @@ size_t Game::getCoordY() {
 
 void Game::placeCarrier(const Player & player) {
     Coords c1 = getUserCoord();
-
 }
 
 void Game::placeBattleship(const Player & player) {
