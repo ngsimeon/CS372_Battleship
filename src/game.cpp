@@ -203,26 +203,25 @@ void Game::placeSubmarine(Player & player) {
     Coords c1 = getUserCoord();
     bool orientation = getUserOrientation();
     Coords c2 = {0, 0};
-    if (orientation) {
-        // If unable to place horizontally, place vertically.
-        if (c1.x+2 >= player.getLength()) {
-            if (c1.x-2 > 0) {
-                // Place horizontal/negative
-                c2 = {c1.x-2, c1.y};
-            }
-            else if (c1.y+2 >= player.getWidth())
-                // Place vertical/negative
-                c2 = {c1.x, c1.y - 2};
-            else {
-                // Place vertical/positive
-                c2 = {c1.x, c1.y + 2};
-            }
+    // If unable to place horizontally, place vertically.
+    if (c1.x+2 >= player.getLength()) {
+        if (c1.x-2 > 0) {
+            // Place horizontal/negative
+            c2 = {c1.x-2, c1.y};
         }
-            // Else place horizontal/positive
+        else if (c1.y+2 >= player.getWidth())
+            // Place vertical/negative
+            c2 = {c1.x, c1.y - 2};
         else {
-            c2 = {c1.x + 2, c1.y};
+            // Place vertical/positive
+            c2 = {c1.x, c1.y + 2};
         }
     }
+        // Else place horizontal/positive
+    else {
+        c2 = {c1.x + 2, c1.y};
+    }
+
     Ship ship(c1, c2);
     player.addShip(ship);
 }
