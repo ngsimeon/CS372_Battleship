@@ -12,18 +12,49 @@ Game::Game() = default;
 
 // ---- Game : Public Member Functions
 
-void Game::gameLoop() {
+void Game::gameLoop()
+{
+    cout << "Game started" << endl;
+
     // Player 1 places ships
     cout << "Player 1, place your ships!" << endl;
     placeDefaultShips(_playerOne);
-    _playerOne.fireAtEnemy(getUserCoordFire(_playerOne));
-    cout << _playerOne.getBoard();
+    printBoardPlayer1();
+
     // Player 2 places ships
     cout << "Player 2, place your ships!" << endl;
+    placeDefaultShips(_playerTwo);
+    printBoardPlayer2();
 
-    cout << "Game started" << endl;
 
-    // Game loop starts
+    bool win = false;
+    auto turn = 0;
+
+    // After ship placement stage
+    while(!win)
+    {
+        //player 1 turn
+        if (turn % 2 == 0)
+        {
+            //player 1 fires
+            Coords c = getUserCoordFire(_playerOne);
+            _playerOne.fireAtEnemy(c);
+
+            //board updates
+            printBoardPlayer1();
+
+        } else
+        {
+            //player 2 fires
+            Coords c = getUserCoordFire(_playerTwo);
+            _playerTwo.fireAtEnemy(c);
+
+            //board updates
+            printBoardPlayer2();
+        }
+    }
+
+        // Game loop starts
     // - Alternating fire by p1 and p2
     // ----> Print p1 board
     // ----> p1 fires.
@@ -277,4 +308,15 @@ void Game::placePatrol(Player & player) {
     Ship ship(c1, c2);
     player.addShip(ship);
 }
+    void Game::printBoardPlayer1()
+    {
+        cout << _playerOne.getBoard();
+    }
+    void Game::printBoardPlayer2()
+    {
+        cout << _playerTwo.getBoard();
+    }
+
+
+
 

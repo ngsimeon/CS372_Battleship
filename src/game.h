@@ -50,12 +50,16 @@ public:
 
 
 
+
+
     // ---- Game: Data Members ----
 
 private:
     Player _playerOne;
     Player _playerTwo;
 
+    void printBoardPlayer1();
+    void printBoardPlayer2();
 };
 
 
