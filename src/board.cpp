@@ -175,9 +175,9 @@ ostream &operator<<(ostream &os, const Board &b)
     os << "Hits & Misses" << endl;
 
 
-    for (size_t x=0; x < b.getLength(); ++x)
+    for (size_t y=0; y < b.getLength(); ++y)
     {
-        for(size_t y=0; y < b.getWidth(); ++y)
+        for(size_t x=0; x < b.getWidth(); ++x)
         {
             Coords c = {x,y};
 
@@ -199,9 +199,9 @@ ostream &operator<<(ostream &os, const Board &b)
 
     //top board (fired/missed/nothing)
     os << "SHIPS" << endl;
-    for (size_t x=0; x< b.getLength(); ++x)
+    for (size_t y=0; y< b.getLength(); ++y)
     {
-        for (size_t y = 0; y < b.getWidth(); ++y)
+        for (size_t x = 0; x < b.getWidth(); ++x)
         {
             Coords c = {x,y};
             if(b.isCoordTakenShip(c))
