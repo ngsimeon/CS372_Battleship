@@ -16,10 +16,13 @@ void Game::gameLoop() {
     // Player 1 places ships
     cout << "Player 1, place your ships!" << endl;
     placeDefaultShips(_playerOne);
+    _playerOne.fireAtEnemy(getUserCoord());
+    cout << _playerOne.getBoard();
     // Player 2 places ships
     cout << "Player 2, place your ships!" << endl;
 
     cout << "Game started" << endl;
+
     // Game loop starts
     // - Alternating fire by p1 and p2
     // ----> Print p1 board

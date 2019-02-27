@@ -14,7 +14,7 @@
 #include "ship.h"
 using std::ostream;
 using std::vector;
-using std::find;
+using std::find_if;
 
 // ---- Class Board ----
 
@@ -45,7 +45,9 @@ public:
     void addShip(const Ship &);
     void addCoordHorizontal(const Ship &);
     void addCoordVertical(const Ship &);
-    bool isCoordTaken(const Coords&) const;
+    bool isCoordTakenShip(const Coords&) const;
+    bool isCoordTakenFiredAt(const Coords & c) const;
+    bool isCoordTakenHit(const Coords & c) const;
     bool attack(const Coords &);
     void attackShip(const Coords &);
     bool isSunk(const Ship &);
