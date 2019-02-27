@@ -33,9 +33,33 @@ void Game::gameLoop() {
 }
 
 void Game::placeDefaultShips(const Player &) {
-    // Place carrier
+
     // Place battleship
     // Place destroyer
     // Place submarine
     // Place patrol boat
+}
+
+void Game::placeCarrier(const Player & player) {
+    Coords c1 = getUserCoord();
+}
+
+void Game::placeBattleship(const Player & player) {
+
+}
+
+void Game::placeDestroyer(const Player & player) {
+
+}
+
+void Game::placeSubmarine(const Player & player) {
+
+}
+
+void Game::placePatrol(const Player & player) {
+
+}
+
+Coords Game::getUserCoord() {
+    cout << "Enter X coordinate [0-" << _playerOne.
 }

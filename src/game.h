@@ -26,7 +26,14 @@ public:
 public:
     void gameLoop();
     void placeDefaultShips(const Player &);
+    Coords getUserCoord();
 
+
+    void placeCarrier(const Player &);
+    void placeBattleship(const Player &);
+    void placeDestroyer(const Player &);
+    void placeSubmarine(const Player &);
+    void placePatrol(const Player &);
 
     // ---- Game: Data Members ----
 
