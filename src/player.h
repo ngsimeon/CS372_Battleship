@@ -23,7 +23,8 @@ public:
 public:
     size_t getLength() const;
     size_t getWidth() const;
-
+    vector<Ship> getShips() const;
+    
     void addShip(const Ship &);
     bool fireAtEnemy(const Coords &);
     Board getBoard()const;

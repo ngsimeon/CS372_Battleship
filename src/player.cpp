@@ -25,6 +25,12 @@ size_t Player::getWidth() const {
     return _shipBoard.getWidth();
 }
 
+// getShips()
+// Returns a vector of ships coordinates
+vector<Ship> Player::getShips() const {
+    return _shipBoard.getShips();
+}
+
 // addShip()
 // Adds a given ship to the board.
 void Player::addShip(const Ship & ship) {
