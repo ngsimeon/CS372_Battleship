@@ -39,6 +39,7 @@ void Game::gameLoop()
             //player 1 fires
             Coords c = getUserCoordFire(_playerOne);
             _playerOne.fireAtEnemy(c);
+            //PRINT HIT if HIT or MISS if MISS
 
             //board updates
             printBoardPlayer1();
@@ -52,6 +53,8 @@ void Game::gameLoop()
             //board updates
             printBoardPlayer2();
         }
+
+        ++turn;
     }
 
         // Game loop starts
