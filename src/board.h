@@ -22,15 +22,11 @@ class Board {
 
     // ---- Board: Ctors ----
 
-
-
-
 public:
     Board();
     explicit Board(size_t);
     Board(size_t, size_t);
 
-    friend ostream &operator<<(ostream &os, const Board &b);
 
     // ---- Board: Public Member Functions ----
 
@@ -52,6 +48,8 @@ public:
     void attackShip(const Coords &);
     bool isSunk(const Ship &);
     bool allSunk();
+
+    friend ostream& operator<<(ostream &os, const Board &);
 
     // ---- Board: Data Members ----
 
