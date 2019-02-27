@@ -88,7 +88,7 @@ void Board::addCoordVertical(const Ship & ship) {
 
 // isCoordTaken()
 // Returns true if coordinate given is taken up by a ship.
-bool Board::isCoordTaken(const Coords & c) const {
+bool Board::isCoordTakenShip(const Coords & c) const {
     auto pred = [c](const Coords & c2) {
         return c.x == c2.x && c.y == c2.y;
     };
@@ -96,10 +96,36 @@ bool Board::isCoordTaken(const Coords & c) const {
     return iter != _shipCoords.end();
 }
 
+
+// isCoordTakenFiredAt()
+// Returns true if coordinate given is taken up by a ship.
+bool Board::isCoordTakenFiredAt(const Coords & c) const {
+    auto pred = [c](const Coords & c2) {
+        return c.x == c2.x && c.y == c2.y;
+    };
+    auto iter = std::find_if(_coordsFiredAt.begin(), _coordsFiredAt.end(), pred);
+    return iter != _coordsFiredAt.end();
+}
+
+// isCoordTakenHit()
+// Returns true if coordinate given is taken up by a ship.
+bool Board::isCoordTakenHit(const Coords & c) const {
+    auto pred = [c](const Coords & c2) {
+        return c.x == c2.x && c.y == c2.y;
+    };
+    auto iter = std::find_if(_coordsHit.begin(), _coordsHit.end(), pred);
+    return iter != _coordsHit.end();
+}
+
+
+
+
+
+
 // attack()
 // Returns true if coordinate given is hit. False otherwise.
 bool Board::attack(const Coords & c) {
-    if(isCoordTaken(c)) {
+    if(isCoordTakenShip(c)) {
         attackShip(c);
         _coordsFiredAt.push_back(c);
         _coordsHit.push_back(c);
@@ -146,11 +172,42 @@ ostream &operator<<(ostream &os, const Board &b)
 {
 
     //top board (fired/missed/nothing)
-    for (auto i=0; i< b.getLength(); ++i)
+    os << "Hits & Misses" << endl;
+
+
+    for (size_t y=0; y < b.getLength(); ++y)
     {
-        for(auto j=0; j < b.getWidth(); ++j)
+        for(size_t x=0; x < b.getWidth(); ++x)
         {
-            os << "#";
+            Coords c = {x,y};
+
+            if(b.isCoordTakenHit(c))
+            {
+                os << "X";
+            }
+            else if(b.isCoordTakenFiredAt(c))
+            {
+                os << "O";
+            }
+            else
+                os << "#";
+        }
+        os << endl;
+    }
+    os << endl;
+
+
+    //top board (fired/missed/nothing)
+    os << "SHIPS" << endl;
+    for (size_t y=0; y< b.getLength(); ++y)
+    {
+        for (size_t x = 0; x < b.getWidth(); ++x)
+        {
+            Coords c = {x,y};
+            if(b.isCoordTakenShip(c))
+                os << "S";
+            else
+                os << "~";
         }
         os << endl;
     }
