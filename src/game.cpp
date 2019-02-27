@@ -41,19 +41,18 @@ void Game::gameLoop()
         cout << endl;
         cout << "Fire at Player 2!" << endl;
         Coords c1 = getUserCoordFire(_playerTwo);
-        if(_playerTwo.hit(c1)) {
-            cout << "HIT!" << endl;
-        }
-        else {
-            cout << "MISS!" << endl;
-        }
+
+        clearBoard();
+
+        if(_playerTwo.hit(c1))
+            cout << "**HIT!**" << endl;
+        else
+            cout << "--MISS!--" << endl;
 
         if(_playerTwo.getAllSunk()) {
             cout << "PLAYER 1 WINS!!!" << endl;
             break;
         }
-
-        clearBoard();
 
         // ---- PLAYER 2'S TURN ----
 
@@ -65,19 +64,18 @@ void Game::gameLoop()
         cout << endl;
         cout << "Fire at Player 1!" << endl;
         Coords c2 = getUserCoordFire(_playerOne);
-        if(_playerOne.hit(c2)) {
-            cout << "HIT!" << endl;
-        }
-        else {
-            cout << "MISS!" << endl;
-        }
+
+        clearBoard();
+
+        if(_playerOne.hit(c2))
+            cout << "**HIT!**" << endl;
+        else
+            cout << "--MISS!--" << endl;
 
         if(_playerOne.getAllSunk()) {
             cout << "PLAYER 2 WINS !!!" << endl;
             break;
         }
-
-        clearBoard();
     }
 }
 
@@ -90,11 +88,11 @@ void Game::placeDefaultShips(Player & player) {
     Ships ship4 = SUBMARINE;
     Ships ship5 = PATROL;
 
-    placeShip(player, ship1);
-    placeShip(player, ship2);
-    placeShip(player, ship3);
-    placeShip(player, ship4);
-    placeShip(player, ship5);
+    placeShipLoop(player, ship1);
+    placeShipLoop(player, ship2);
+    placeShipLoop(player, ship3);
+    placeShipLoop(player, ship4);
+    placeShipLoop(player, ship5);
 }
 
 // getUserCoordFire()
@@ -125,8 +123,7 @@ Coords Game::getUserCoordShip(Player & player) {
 
         Coords c(coordX, coordY);
         if(player.isCoordTakenShip(c)) {
-            cout << "Another ship is already there!" << endl;
-            cout << "Enter another coordinate." << endl;
+            cout << "Another ship is already there! Try placing somewhere else!" << endl << endl;
             continue;
         }
         else {
@@ -203,9 +200,9 @@ bool Game::getUserOrientation() {
     }
 }
 
-// placeShip()
+// placeShipLoop()
 // Places a default ship based on the given enumeration.
-void Game::placeShip(Player & player, Game::Ships ship) {
+void Game::placeShipLoop(Player & player, Game::Ships ship) {
     string shipType;
     size_t shipValue = 0;
     switch(ship) {
@@ -220,6 +217,39 @@ void Game::placeShip(Player & player, Game::Ships ship) {
         cout << "Place the front of your " << shipType << ":" << endl;
         Coords c1 = getUserCoordShip(player);
         bool orientation = getUserOrientation();
+        // Refactor this into a function.
+        if(orientation) {
+            // test horizontal overlap
+            bool overlapped = false;
+            for (size_t x = c1.x; x <= shipValue; ++x) {
+                Coords testCoord = {x, c1.y};
+                if(player.isCoordTakenShip(testCoord)) {
+                    overlapped = true;
+                    break;
+                }
+            }
+            if (overlapped) {
+                cout << "Another ship is already there! Try placing somewhere else!" << endl << endl;
+                continue;
+            }
+        }
+        else {
+            // test vertical overlap
+            bool overlapped = false;
+            for (size_t y = c1.y; y <= shipValue; ++y) {
+                Coords testCoord = {c1.x, y};
+                if(player.isCoordTakenShip(testCoord)) {
+                    overlapped = true;
+                    break;
+                }
+            }
+            if (overlapped) {
+                cout << "Another ship is already there! Try placing somewhere else!" << endl << endl;
+                continue;
+            }
+        }
+
+
         Coords c2 = {0, 0};
 
         if (orientation) {

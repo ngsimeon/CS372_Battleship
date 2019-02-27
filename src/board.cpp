@@ -54,12 +54,10 @@ void Board::addShip(const Ship & ship) {
     _ships.push_back(ship);
 
     // If horizontal
-    if(ship.getOrientation()) {
-        this->addCoordHorizontal(ship);
-    }
-    else {
-        this->addCoordVertical(ship);
-    }
+    if(ship.getOrientation())
+        addCoordHorizontal(ship);
+    else
+        addCoordVertical(ship);
 }
 
 // addCoordHorizontal()
@@ -134,9 +132,8 @@ bool Board::attack(const Coords & c) {
 // Finds the original ship given a coordinate and attacks it.
 void Board::attackShip(const Coords & c) {
     for(auto& i : _ships) {
-        if(i.attack(c)){
+        if(i.attack(c))
             break;
-        }
     }
 }
 
@@ -144,9 +141,8 @@ void Board::attackShip(const Coords & c) {
 // Returns true if the given ship is sunk. False otherwise.
 bool Board::isSunk(const Ship & ship) {
     for(auto & i : _ships) {
-        if(i == ship) {
+        if(i == ship)
             return i.isSunk();
-        }
     }
     return false;
 }

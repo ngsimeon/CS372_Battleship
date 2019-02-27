@@ -38,7 +38,7 @@ public:
     size_t getUserCoordX();
     size_t getUserCoordY();
     bool getUserOrientation();
-    void placeShip(Player &, Ships);
+    void placeShipLoop(Player &, Ships);
     void printTopPlayer1();
     void printBottomPlayer1();
     void printTopPlayer2();
