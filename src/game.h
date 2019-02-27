@@ -39,21 +39,15 @@ public:
     size_t getUserCoordY();
     bool getUserOrientation();
     void placeShip(Player &, Ships);
-
-    void placeCarrier(Player &);
-    void placeBattleship(Player &);
-    void placeDestroyer(Player &);
-    void placeSubmarine(Player &);
-    void placePatrol(Player &);
+    void printTopBoardPlayer1();
+    void printTopBoardPlayer2();
+    void clearBoard() const;
 
     // ---- Game: Data Members ----
 
 private:
     Player _playerOne;
     Player _playerTwo;
-
-    void printBoardPlayer1();
-    void printBoardPlayer2();
 };
 
 #endif //BATTLESHIP_GAME_H

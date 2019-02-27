@@ -19,54 +19,51 @@ void Game::gameLoop()
     // Player 1 places ships
     cout << "Player 1, place your ships!" << endl;
     placeDefaultShips(_playerOne);
-    printBoardPlayer1();
+
+    printTopBoardPlayer1();
 
     // Player 2 places ships
     cout << "Player 2, place your ships!" << endl;
     placeDefaultShips(_playerTwo);
-    printBoardPlayer2();
+    printTopBoardPlayer1();
 
+    while(true) {
+        // ---- PLAYER 1'S TURN ----
 
-    bool win = false;
-    auto turn = 0;
-
-    // After ship placement stage
-    while(!win)
-    {
-        //player 1 turn
-        if (turn % 2 == 0)
-        {
-            //player 1 fires
-            Coords c = getUserCoordFire(_playerOne);
-            _playerOne.fireAtEnemy(c);
-            //PRINT HIT if HIT or MISS if MISS
-
-            //board updates
-            printBoardPlayer1();
-
-        } else
-        {
-            //player 2 fires
-            Coords c = getUserCoordFire(_playerTwo);
-            _playerTwo.fireAtEnemy(c);
-
-            //board updates
-            printBoardPlayer2();
+        cout << "Player 1's Turn" << endl;
+        Coords c1 = getUserCoordFire(_playerOne);
+        if(_playerTwo.hit(c1)) {
+            cout << "HIT!" << endl;
+        }
+        else {
+            cout << "MISS!" << endl;
         }
 
-        ++turn;
+        if(_playerTwo.getAllSunk()) {
+            cout << "PLAYER 1 WINS!!!" << endl;
+            break;
+        }
+
+        // ---- PLAYER 2'S TURN ----
+
+        cout << "Player 2's Turn" << endl;
+
+        printTopBoardPlayer1();
+        Coords c2 = getUserCoordFire(_playerTwo);
+        if(_playerOne.hit(c1)) {
+            cout << "HIT!" << endl;
+        }
+        else {
+            cout << "MISS!" << endl;
+        }
+
+        if(_playerOne.getAllSunk()) {
+            cout << "PLAYER 2 WINS !!!" << endl;
+            break;
+        }
+
+        printTopBoardPlayer2();
     }
-
-        // Game loop starts
-    // - Alternating fire by p1 and p2
-    // ----> Print p1 board
-    // ----> p1 fires.
-    // ----> Hide p1 board
-    // ----> Print p2 board
-    // ----> p2 fires.
-    // ----> Hide p2 board
-
-    // - check if all ships are sunken.
 }
 
 void Game::placeDefaultShips(Player & player) {
@@ -228,12 +225,17 @@ void Game::placeShip(Player & player, Game::Ships ship) {
     }
 }
 
-void Game::printBoardPlayer1() {
+void Game::printTopBoardPlayer1() {
     cout << _playerOne.getBoard();
 }
 
-void Game::printBoardPlayer2(){
+void Game::printTopBoardPlayer2(){
     cout << _playerTwo.getBoard();
+}
+
+void Game::clearBoard() const {
+    cout << endl << endl << endl << endl << endl
+         << endl << endl << endl << endl << endl;
 }
 
 

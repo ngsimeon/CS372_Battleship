@@ -23,11 +23,12 @@ public:
 public:
     size_t getLength() const;
     size_t getWidth() const;
+    bool getAllSunk();
     bool isCoordTakenShip(const Coords &);
     bool isCoordTakenFired(const Coords &);
 
     void addShip(const Ship &);
-    bool fireAtEnemy(const Coords &);
+    bool hit(const Coords &);
     Board getBoard()const;
 
 

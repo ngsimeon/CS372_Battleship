@@ -25,6 +25,12 @@ size_t Player::getWidth() const {
     return _shipBoard.getWidth();
 }
 
+// getAllSunk
+bool Player::getAllSunk() {
+    return _shipBoard.allSunk();
+}
+
+
 bool Player::isCoordTakenShip(const Coords& c) {
     return _shipBoard.isCoordTakenShip(c);
 }
@@ -39,9 +45,9 @@ void Player::addShip(const Ship & ship) {
     _shipBoard.addShip(ship);
 }
 
-// fireAtEnemy()
+// hit()
 // Returns true if attack hit a ship. False otherwise.
-bool Player::fireAtEnemy(const Coords & c){
+bool Player::hit(const Coords & c){
     return _shipBoard.attack(c);
 }
 
