@@ -47,8 +47,8 @@ public:
     // ---- Board: Data Members ----
 
 private:
-    size_t _length = 0;              // Length of board
-    size_t _width = 0;               // Width of board
+    size_t _length = 0;              // Length of board. Corresponds to X coordinate.
+    size_t _width = 0;               // Width of board. Corresponds to Y coordinate.
     vector<Ship> _ships;             // List of ships added to the board
     vector<Coords> _shipCoords;      // List of Coords that are taken by ships
     vector<Coords> _coordsFiredAt;   // List of Coords that have been fired at. Acts as upper board.
