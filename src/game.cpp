@@ -15,11 +15,12 @@ Game::Game() = default;
 void Game::gameLoop() {
     // Player 1 places ships
     cout << "Player 1, place your ships!" << endl;
+    placeDefaultShips(_playerOne);
     // Player 2 places ships
     cout << "Player 2, place your ships!" << endl;
+    placeDefaultShips(_playerTwo);
 
     cout << "Game started" << endl;
-
     // Game loop starts
     // - Alternating fire by p1 and p2
     // ----> Print p1 board
@@ -115,10 +116,24 @@ void Game::placeCarrier(Player & player) {
     bool orientation = getUserOrientation();
     Coords c2 = {0, 0};
     if (orientation) {
-        c2 = {c1.x + 5, c1.y};
-    }
-    else {
-        c2 = {c1.x, c1.y + 5};
+        // If unable to place horizontally, place vertically.
+        if (c1.x+5 >= player.getLength()) {
+            if (c1.x-5 > 0) {
+                // Place horizontal/negative
+                c2 = {c1.x-5, c1.y};
+            }
+            else if (c1.y+5 >= player.getWidth())
+                // Place vertical/negative
+                c2 = {c1.x, c1.y - 5};
+            else {
+                // Place vertical/positive
+                c2 = {c1.x, c1.y + 5};
+            }
+        }
+        // Else place horizontal/positive
+        else {
+            c2 = {c1.x + 5, c1.y};
+        }
     }
     Ship ship(c1, c2);
     player.addShip(ship);
