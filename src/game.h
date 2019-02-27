@@ -26,12 +26,9 @@ class Game {
 
 public:
     Game();
+    enum Ships {CARRIER, BATTLESHIP, DESTROYER, SUBMARINE, PATROL};
 
     // ---- Game: Public Member Functions ----
-
-
-
-
 
 public:
     void gameLoop();
@@ -41,6 +38,7 @@ public:
     size_t getUserCoordX();
     size_t getUserCoordY();
     bool getUserOrientation();
+    void placeShip(Player &, Ships);
 
     void placeCarrier(Player &);
     void placeBattleship(Player &);
@@ -48,20 +46,14 @@ public:
     void placeSubmarine(Player &);
     void placePatrol(Player &);
 
-
-
-
-
     // ---- Game: Data Members ----
 
 private:
-    enum Ships {Carrier = 4, Battleship = 3, Destroyer = 2, Submarine = 2, Patrol = 1};
     Player _playerOne;
     Player _playerTwo;
 
     void printBoardPlayer1();
     void printBoardPlayer2();
 };
-
 
 #endif //BATTLESHIP_GAME_H

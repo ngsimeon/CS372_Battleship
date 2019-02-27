@@ -72,12 +72,12 @@ TEST_CASE("Testing Board Size, Coordinates, and Ships") {
     board1.addShip(testShip1);
     Coords c5 = {1, 0};
     SECTION("Adding a length 2 ship horizontally to the board.")
-    REQUIRE(board1.isCoordTaken(c5));
+    REQUIRE(board1.isCoordTakenShip(c5));
 
     board2.addShip(testShip2);
     Coords c6 = {4, 9};
     SECTION("Adding a length 5 ship vertically to the board.")
-    REQUIRE_FALSE(board2.isCoordTaken(c6));
+    REQUIRE_FALSE(board2.isCoordTakenShip(c6));
 
     SECTION("Attacking board1 at (1, 0)")
     REQUIRE(board1.attack(c5));
