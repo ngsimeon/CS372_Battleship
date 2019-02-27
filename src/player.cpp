@@ -26,6 +26,7 @@ size_t Player::getWidth() const {
 }
 
 // getAllSunk
+// Returns true if all ships are sunk.
 bool Player::getAllSunk() {
     return _shipBoard.allSunk();
 }
@@ -37,6 +38,10 @@ bool Player::isCoordTakenShip(const Coords& c) {
 
 bool Player::isCoordTakenFired(const Coords & c) {
     return _shipBoard.isCoordTakenFiredAt(c);
+}
+
+bool Player::isCoordTakenHits(const Coords & c) {
+    return _shipBoard.isCoordTakenHit(c);
 }
 
 // addShip()

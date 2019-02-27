@@ -26,6 +26,7 @@ public:
     bool getAllSunk();
     bool isCoordTakenShip(const Coords &);
     bool isCoordTakenFired(const Coords &);
+    bool isCoordTakenHits(const Coords &);
 
     void addShip(const Ship &);
     bool hit(const Coords &);

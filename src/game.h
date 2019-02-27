@@ -39,8 +39,10 @@ public:
     size_t getUserCoordY();
     bool getUserOrientation();
     void placeShip(Player &, Ships);
-    void printTopBoardPlayer1();
-    void printTopBoardPlayer2();
+    void printTopPlayer1();
+    void printBottomPlayer1();
+    void printTopPlayer2();
+    void printBottomPlayer2();
     void clearBoard() const;
 
     // ---- Game: Data Members ----

@@ -117,11 +117,6 @@ bool Board::isCoordTakenHit(const Coords & c) const {
     return iter != _coordsHit.end();
 }
 
-
-
-
-
-
 // attack()
 // Returns true if coordinate given is hit. False otherwise.
 bool Board::attack(const Coords & c) {
@@ -166,51 +161,4 @@ bool Board::allSunk() {
             return false;
     }
     return true;
-}
-
-ostream & operator<<(ostream &os, const Board &b)
-{
-    //top board (fired/missed/nothing)
-    os << "Hits & Misses" << endl;
-
-    for (size_t y=0; y < b.getLength(); ++y)
-    {
-        for(size_t x=0; x < b.getWidth(); ++x)
-        {
-            Coords c = {x,y};
-
-            if(b.isCoordTakenHit(c))
-            {
-                os << "X";
-            }
-            else if(b.isCoordTakenFiredAt(c))
-            {
-                os << "O";
-            }
-            else
-                os << "#";
-        }
-        os << endl;
-    }
-    os << endl;
-
-
-    //top board (fired/missed/nothing)
-    os << "SHIPS" << endl;
-    for (size_t y=0; y< b.getLength(); ++y)
-    {
-        for (size_t x = 0; x < b.getWidth(); ++x)
-        {
-            Coords c = {x,y};
-            if(b.isCoordTakenHit(c))
-                os << "X";
-            else if(b.isCoordTakenFiredAt(c))
-                os << "O";
-            else if(b.isCoordTakenShip(c))
-                os << "S";
-            else
-                os << "~";
-        }
-        os << endl;
-    }
 }
