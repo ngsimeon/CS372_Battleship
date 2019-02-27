@@ -36,7 +36,8 @@ public:
 public:
     void gameLoop();
     void placeDefaultShips(Player &);
-    Coords getUserCoord();
+    Coords getUserCoordFire(Player &);
+    Coords getUserCoordShip(Player &);
     size_t getUserCoordX();
     size_t getUserCoordY();
     bool getUserOrientation();

@@ -25,10 +25,12 @@ size_t Player::getWidth() const {
     return _shipBoard.getWidth();
 }
 
-// getShips()
-// Returns a vector of ships coordinates
-vector<Ship> Player::getShips() const {
-    return _shipBoard.getShips();
+bool Player::isCoordTakenShip(const Coords& c) {
+    return _shipBoard.isCoordTakenShip(c);
+}
+
+bool Player::isCoordTakenFired(const Coords & c) {
+    return _shipBoard.isCoordTakenFiredAt(c);
 }
 
 // addShip()

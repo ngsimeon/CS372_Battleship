@@ -16,7 +16,7 @@ void Game::gameLoop() {
     // Player 1 places ships
     cout << "Player 1, place your ships!" << endl;
     placeDefaultShips(_playerOne);
-    _playerOne.fireAtEnemy(getUserCoord());
+    _playerOne.fireAtEnemy(getUserCoordFire(_playerOne));
     cout << _playerOne.getBoard();
     // Player 2 places ships
     cout << "Player 2, place your ships!" << endl;
@@ -43,11 +43,36 @@ void Game::placeDefaultShips(Player & player) {
     placePatrol(player);
 }
 
-Coords Game::getUserCoord() {
-    size_t coordX = getUserCoordX();
-    size_t coordY = getUserCoordY();
-    Coords c(coordX, coordY);
-    return c;
+Coords Game::getUserCoordFire(Player & player){
+    while(true) {
+        size_t coordX = getUserCoordX();
+        size_t coordY = getUserCoordY();
+
+        Coords c(coordX, coordY);
+        if(player.isCoordTakenFired(c)) {
+            cout << "You have already fired at this coordinate!" << endl;
+            continue;
+        }
+        else {
+            return c;
+        }
+    }
+}
+
+Coords Game::getUserCoordShip(Player & player) {
+    while(true) {
+        size_t coordX = getUserCoordX();
+        size_t coordY = getUserCoordY();
+
+        Coords c(coordX, coordY);
+        if(player.isCoordTakenShip(c)) {
+            cout << "Another ship is already there!" << endl;
+            continue;
+        }
+        else {
+            return c;
+        }
+    }
 }
 
 size_t Game::getUserCoordX() {
@@ -118,7 +143,7 @@ bool Game::getUserOrientation() {
 
 void Game::placeCarrier(Player & player) {
     cout << "Place the bow(front) of your Carrier:" << endl;
-    Coords c1 = getUserCoord();
+    Coords c1 = getUserCoordShip(player);
     bool orientation = getUserOrientation();
     Coords c2 = {0, 0};
         // If unable to place horizontally, place vertically.
@@ -146,7 +171,7 @@ void Game::placeCarrier(Player & player) {
 
 void Game::placeBattleship(Player & player) {
     cout << "Place the bow(front) of your Battleship:" << endl;
-    Coords c1 = getUserCoord();
+    Coords c1 = getUserCoordShip(player);
     bool orientation = getUserOrientation();
     Coords c2 = {0, 0};
     // If unable to place horizontally, place vertically.
@@ -173,7 +198,7 @@ void Game::placeBattleship(Player & player) {
 
 void Game::placeDestroyer(Player & player) {
     cout << "Place the bow(front) of your Destroyer:" << endl;
-    Coords c1 = getUserCoord();
+    Coords c1 = getUserCoordShip(player);
     bool orientation = getUserOrientation();
     Coords c2 = {0, 0};
     // If unable to place horizontally, place vertically.
@@ -200,7 +225,7 @@ void Game::placeDestroyer(Player & player) {
 
 void Game::placeSubmarine(Player & player) {
     cout << "Place the bow(front) of your Submarine:" << endl;
-    Coords c1 = getUserCoord();
+    Coords c1 = getUserCoordShip(player);
     bool orientation = getUserOrientation();
     Coords c2 = {0, 0};
     // If unable to place horizontally, place vertically.
@@ -228,7 +253,7 @@ void Game::placeSubmarine(Player & player) {
 
 void Game::placePatrol(Player & player) {
     cout << "Place the bow(front) of your Patrol Boat:" << endl;
-    Coords c1 = getUserCoord();
+    Coords c1 = getUserCoordShip(player);
     bool orientation = getUserOrientation();
     Coords c2 = {0, 0};
     // If unable to place horizontally, place vertically.
