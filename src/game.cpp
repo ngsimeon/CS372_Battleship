@@ -56,14 +56,14 @@ size_t Game::getUserCoordX() {
         cout << "Enter X coordinate [0-" << _playerOne.getLength() << "]: ";
         getline(cin, inputX);
         if(!cin) {
-            std::cerr << "Input error. Try again." << endl;
+            std::cout << "Input error. Try again." << endl;
             continue;
         }
         istringstream iss(inputX);
         size_t coordX;
         iss >> coordX;
         if(!iss) {
-            std::cerr << "X coordinate must be an integer between [0-" << _playerOne.getLength() << "]";
+            std::cout << "X coordinate must be an integer between [0-" << _playerOne.getLength() << "]";
             continue;
         }
         return coordX;
@@ -76,7 +76,7 @@ size_t Game::getUserCoordY() {
         cout << "Enter Y coordinate [0-" << _playerOne.getWidth() << "]: ";
         getline(cin, inputY);
         if (!cin) {
-            std::cerr << "Input error. Try again." << endl;
+            std::cout << "Input error. Try again." << endl;
             continue;
         }
         istringstream iss(inputY);
@@ -84,7 +84,7 @@ size_t Game::getUserCoordY() {
         size_t coordY;
         iss >> coordY;
         if (!iss) {
-            std::cerr << "Y coordinate must be an integer between [0-" << _playerOne.getWidth() << "]";
+            std::cout << "Y coordinate must be an integer between [0-" << _playerOne.getWidth() << "]";
             continue;
         }
         return coordY;
@@ -97,7 +97,7 @@ bool Game::getUserOrientation() {
         cout << "[H]orizontal or [V]ertical?: ";
         getline(cin, orientation);
         if (!cin) {
-            std::cerr << "Input error. Try again." << endl;
+            std::cout << "Input error. Try again." << endl;
             continue;
         }
         switch(orientation[0]) {
