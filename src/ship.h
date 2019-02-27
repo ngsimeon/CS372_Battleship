@@ -75,7 +75,7 @@ private:
     bool _orientation;      // Orientation of ship;
                             // True == Horizontal, False == Vertical
     vector<bool> _hits;
-    bool _sunk = false;             // True == sunk, False == still floating
+    bool _sunk = false;     // True == sunk, False == still floating
 
 };
 

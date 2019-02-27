@@ -55,6 +55,7 @@ public:
     // ---- Game: Data Members ----
 
 private:
+    enum Ships {Carrier = 4, Battleship = 3, Destroyer = 2, Submarine = 2, Patrol = 1};
     Player _playerOne;
     Player _playerTwo;
 

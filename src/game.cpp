@@ -85,6 +85,7 @@ Coords Game::getUserCoordFire(Player & player){
         Coords c(coordX, coordY);
         if(player.isCoordTakenFired(c)) {
             cout << "You have already fired at this coordinate!" << endl;
+            cout << "Enter another coordinate";
             continue;
         }
         else {
@@ -101,6 +102,7 @@ Coords Game::getUserCoordShip(Player & player) {
         Coords c(coordX, coordY);
         if(player.isCoordTakenShip(c)) {
             cout << "Another ship is already there!" << endl;
+            cout << "Enter another coordinate." << endl;
             continue;
         }
         else {
@@ -112,7 +114,7 @@ Coords Game::getUserCoordShip(Player & player) {
 size_t Game::getUserCoordX() {
     while(true) {
         string inputX;
-        cout << "Enter X coordinate [0-" << _playerOne.getLength() << "]: ";
+        cout << "Enter X coordinate [0-" << _playerOne.getLength() - 1 << "]: ";
         getline(cin, inputX);
         if(!cin) {
             std::cout << "Input error. Try again." << endl;
@@ -121,8 +123,8 @@ size_t Game::getUserCoordX() {
         istringstream iss(inputX);
         size_t coordX;
         iss >> coordX;
-        if(!iss) {
-            std::cout << "X coordinate must be an integer between [0-" << _playerOne.getLength() << "]";
+        if(!iss || coordX >= _playerOne.getLength()) {
+            std::cout << "X coordinate must be an integer between [0-" << _playerOne.getLength() - 1 << "]" << endl;
             continue;
         }
         return coordX;
@@ -132,7 +134,7 @@ size_t Game::getUserCoordX() {
 size_t Game::getUserCoordY() {
     while(true) {
         string inputY;
-        cout << "Enter Y coordinate [0-" << _playerOne.getWidth() << "]: ";
+        cout << "Enter Y coordinate [0-" << _playerOne.getWidth() - 1 << "]: ";
         getline(cin, inputY);
         if (!cin) {
             std::cout << "Input error. Try again." << endl;
@@ -142,8 +144,8 @@ size_t Game::getUserCoordY() {
         iss.str(inputY);
         size_t coordY;
         iss >> coordY;
-        if (!iss) {
-            std::cout << "Y coordinate must be an integer between [0-" << _playerOne.getWidth() << "]";
+        if (!iss || coordY >= _playerOne.getWidth()) {
+            std::cout << "Y coordinate must be an integer between [0-" << _playerOne.getWidth() - 1 << "]" << endl;
             continue;
         }
         return coordY;
@@ -176,140 +178,199 @@ bool Game::getUserOrientation() {
 }
 
 void Game::placeCarrier(Player & player) {
-    cout << "Place the bow(front) of your Carrier:" << endl;
-    Coords c1 = getUserCoordShip(player);
-    bool orientation = getUserOrientation();
-    Coords c2 = {0, 0};
-        // If unable to place horizontally, place vertically.
-    if (c1.x+4 >= player.getLength()) {
-        if (c1.x-4 > 0) {
-            // Place horizontal/negative
-            c2 = {c1.x-4, c1.y};
-        }
-        else if (c1.y+4 >= player.getWidth())
-            // Place vertical/negative
-            c2 = {c1.x, c1.y - 4};
-        else {
-            // Place vertical/positive
-            c2 = {c1.x, c1.y + 4};
-        }
-    }
-    // Else place horizontal/positive
-    else {
-        c2 = {c1.x + 4, c1.y};
-    }
 
-    Ship ship(c1, c2);
-    player.addShip(ship);
+    while (true) {
+        cout << "Place the front of your Carrier:" << endl;
+        Coords c1 = getUserCoordShip(player);
+        bool orientation = getUserOrientation();
+        Coords c2 = {0, 0};
+
+        if (orientation) {
+            if (c1.x + 4 < player.getLength()) {
+                c2 = {c1.x + 4, c1.y};
+            }
+            else if (c1.y + 4 < player.getWidth()) {
+                cout << "No space. Ship has been placed vertically instead.";
+                c2 = {c1.x, c1.y + 4};
+            }
+            else {
+                cout << "Unable to place ship try again." << endl;
+                continue;
+            }
+        }
+        else {
+            if (c1.y + 4 < player.getWidth()) {
+                c2 = {c1.x, c1.y + 4};
+            }
+            else if (c1.x + 4 < player.getLength()) {
+                cout << "No space. Ship has been placed horizontally instead.";
+                c2 = {c1.x + 4, c1.y};
+            }
+            else {
+                cout << "Unable to place ship try again." << endl;
+                continue;
+            }
+        }
+        Ship ship(c1, c2);
+        player.addShip(ship);
+        break;
+    }
 }
 
 void Game::placeBattleship(Player & player) {
-    cout << "Place the bow(front) of your Battleship:" << endl;
-    Coords c1 = getUserCoordShip(player);
-    bool orientation = getUserOrientation();
-    Coords c2 = {0, 0};
-    // If unable to place horizontally, place vertically.
-    if (c1.x+3 >= player.getLength()) {
-        if (c1.x-3 > 0) {
-            // Place horizontal/negative
-            c2 = {c1.x-3, c1.y};
+    while (true) {
+        cout << "Place the front of your Battleship:" << endl;
+        Coords c1 = getUserCoordShip(player);
+        bool orientation = getUserOrientation();
+        Coords c2 = {0, 0};
+
+        if (orientation) {
+            if (c1.x + 3 < player.getLength()) {
+                c2 = {c1.x + 3, c1.y};
+            }
+            else if (c1.y + 3 < player.getWidth()) {
+                cout << "No space. Ship has been placed vertically instead.";
+                c2 = {c1.x, c1.y + 3};
+            }
+            else {
+                cout << "Unable to place ship try again." << endl;
+                continue;
+            }
         }
-        else if (c1.y+3 >= player.getWidth())
-            // Place vertical/negative
-            c2 = {c1.x, c1.y-3};
         else {
-            // Place vertical/positive
-            c2 = {c1.x, c1.y+3};
+            if (c1.y + 3 < player.getWidth()) {
+                c2 = {c1.x, c1.y + 3};
+            }
+            else if (c1.x + 3 < player.getLength()) {
+                cout << "No space. Ship has been placed horizontally instead.";
+                c2 = {c1.x + 3, c1.y};
+            }
+            else {
+                cout << "Unable to place ship try again." << endl;
+                continue;
+            }
         }
+        Ship ship(c1, c2);
+        player.addShip(ship);
+        break;
     }
-        // Else place horizontal/positive
-    else {
-        c2 = {c1.x+3, c1.y};
-    }
-    Ship ship(c1, c2);
-    player.addShip(ship);
 }
 
 void Game::placeDestroyer(Player & player) {
-    cout << "Place the bow(front) of your Destroyer:" << endl;
-    Coords c1 = getUserCoordShip(player);
-    bool orientation = getUserOrientation();
-    Coords c2 = {0, 0};
-    // If unable to place horizontally, place vertically.
-    if (c1.x+2 >= player.getLength()) {
-        if (c1.x-2 > 0) {
-            // Place horizontal/negative
-            c2 = {c1.x-2, c1.y};
+    while (true) {
+        cout << "Place the front of your Destroyer:" << endl;
+        Coords c1 = getUserCoordShip(player);
+        bool orientation = getUserOrientation();
+        Coords c2 = {0, 0};
+
+        if (orientation) {
+            if (c1.x + 2 < player.getLength()) {
+                c2 = {c1.x + 2, c1.y};
+            }
+            else if (c1.y + 2 < player.getWidth()) {
+                cout << "No space. Ship has been placed vertically instead.";
+                c2 = {c1.x, c1.y + 2};
+            }
+            else {
+                cout << "Unable to place ship try again." << endl;
+                continue;
+            }
         }
-        else if (c1.y+2 >= player.getWidth())
-            // Place vertical/negative
-            c2 = {c1.x, c1.y - 2};
         else {
-            // Place vertical/positive
-            c2 = {c1.x, c1.y + 2};
+            if (c1.y + 2 < player.getWidth()) {
+                c2 = {c1.x, c1.y + 2};
+            }
+            else if (c1.x + 2 < player.getLength()) {
+                cout << "No space. Ship has been placed horizontally instead.";
+                c2 = {c1.x + 2, c1.y};
+            }
+            else {
+                cout << "Unable to place ship try again." << endl;
+                continue;
+            }
         }
+        Ship ship(c1, c2);
+        player.addShip(ship);
+        break;
     }
-        // Else place horizontal/positive
-    else {
-        c2 = {c1.x + 2, c1.y};
-    }
-    Ship ship(c1, c2);
-    player.addShip(ship);
 }
 
 void Game::placeSubmarine(Player & player) {
-    cout << "Place the bow(front) of your Submarine:" << endl;
-    Coords c1 = getUserCoordShip(player);
-    bool orientation = getUserOrientation();
-    Coords c2 = {0, 0};
-    // If unable to place horizontally, place vertically.
-    if (c1.x+2 >= player.getLength()) {
-        if (c1.x-2 > 0) {
-            // Place horizontal/negative
-            c2 = {c1.x-2, c1.y};
-        }
-        else if (c1.y+2 >= player.getWidth())
-            // Place vertical/negative
-            c2 = {c1.x, c1.y - 2};
-        else {
-            // Place vertical/positive
-            c2 = {c1.x, c1.y + 2};
-        }
-    }
-        // Else place horizontal/positive
-    else {
-        c2 = {c1.x + 2, c1.y};
-    }
+    while (true) {
+        cout << "Place the front of your Submarine:" << endl;
+        Coords c1 = getUserCoordShip(player);
+        bool orientation = getUserOrientation();
+        Coords c2 = {0, 0};
 
-    Ship ship(c1, c2);
-    player.addShip(ship);
+        if (orientation) {
+            if (c1.x + 2 < player.getLength()) {
+                c2 = {c1.x + 2, c1.y};
+            }
+            else if (c1.y + 2 < player.getWidth()) {
+                cout << "No space. Ship has been placed vertically instead.";
+                c2 = {c1.x, c1.y + 2};
+            }
+            else {
+                cout << "Unable to place ship try again." << endl;
+                continue;
+            }
+        }
+        else {
+            if (c1.y + 2 < player.getWidth()) {
+                c2 = {c1.x, c1.y + 2};
+            }
+            else if (c1.x + 2 < player.getLength()) {
+                cout << "No space. Ship has been placed horizontally instead.";
+                c2 = {c1.x + 2, c1.y};
+            }
+            else {
+                cout << "Unable to place ship try again." << endl;
+                continue;
+            }
+        }
+        Ship ship(c1, c2);
+        player.addShip(ship);
+        break;
+    }
 }
 
 void Game::placePatrol(Player & player) {
-    cout << "Place the bow(front) of your Patrol Boat:" << endl;
-    Coords c1 = getUserCoordShip(player);
-    bool orientation = getUserOrientation();
-    Coords c2 = {0, 0};
-    // If unable to place horizontally, place vertically.
-    if (c1.x+1 >= player.getLength()) {
-        if (c1.x-1 > 0) {
-            // Place horizontal/negative
-            c2 = {c1.x-1, c1.y};
+    while (true) {
+        cout << "Place the front of your Patrol Boat:" << endl;
+        Coords c1 = getUserCoordShip(player);
+        bool orientation = getUserOrientation();
+        Coords c2 = {0, 0};
+
+        if (orientation) {
+            if (c1.x + 1 < player.getLength()) {
+                c2 = {c1.x + 1, c1.y};
+            }
+            else if (c1.y + 1 < player.getWidth()) {
+                cout << "No space. Ship has been placed vertically instead.";
+                c2 = {c1.x, c1.y + 1};
+            }
+            else {
+                cout << "Unable to place ship try again." << endl;
+                continue;
+            }
         }
-        else if (c1.y+1 >= player.getWidth())
-            // Place vertical/negative
-            c2 = {c1.x, c1.y - 1};
         else {
-            // Place vertical/positive
-            c2 = {c1.x, c1.y + 1};
+            if (c1.y + 4 < player.getWidth()) {
+                c2 = {c1.x, c1.y + 1};
+            }
+            else if (c1.x + 1 < player.getLength()) {
+                cout << "No space. Ship has been placed horizontally instead.";
+                c2 = {c1.x + 1, c1.y};
+            }
+            else {
+                cout << "Unable to place ship try again." << endl;
+                continue;
+            }
         }
+        Ship ship(c1, c2);
+        player.addShip(ship);
+        break;
     }
-        // Else place horizontal/positive
-    else {
-        c2 = {c1.x + 1, c1.y};
-    }
-    Ship ship(c1, c2);
-    player.addShip(ship);
 }
     void Game::printBoardPlayer1()
     {
