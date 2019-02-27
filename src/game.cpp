@@ -119,22 +119,22 @@ void Game::placeCarrier(Player & player) {
     Coords c2 = {0, 0};
     if (orientation) {
         // If unable to place horizontally, place vertically.
-        if (c1.x+5 >= player.getLength()) {
-            if (c1.x-5 > 0) {
+        if (c1.x+4 >= player.getLength()) {
+            if (c1.x-4 > 0) {
                 // Place horizontal/negative
-                c2 = {c1.x-5, c1.y};
+                c2 = {c1.x-4, c1.y};
             }
-            else if (c1.y+5 >= player.getWidth())
+            else if (c1.y+4 >= player.getWidth())
                 // Place vertical/negative
-                c2 = {c1.x, c1.y - 5};
+                c2 = {c1.x, c1.y - 4};
             else {
                 // Place vertical/positive
-                c2 = {c1.x, c1.y + 5};
+                c2 = {c1.x, c1.y + 4};
             }
         }
         // Else place horizontal/positive
         else {
-            c2 = {c1.x + 5, c1.y};
+            c2 = {c1.x + 4, c1.y};
         }
     }
     Ship ship(c1, c2);
@@ -148,22 +148,22 @@ void Game::placeBattleship(Player & player) {
     Coords c2 = {0, 0};
     if (orientation) {
         // If unable to place horizontally, place vertically.
-        if (c1.x+4 >= player.getLength()) {
-            if (c1.x-4 > 0) {
+        if (c1.x+3 >= player.getLength()) {
+            if (c1.x-3 > 0) {
                 // Place horizontal/negative
-                c2 = {c1.x-4, c1.y};
+                c2 = {c1.x-3, c1.y};
             }
-            else if (c1.y+4 >= player.getWidth())
+            else if (c1.y+3 >= player.getWidth())
                 // Place vertical/negative
-                c2 = {c1.x, c1.y-4};
+                c2 = {c1.x, c1.y-3};
             else {
                 // Place vertical/positive
-                c2 = {c1.x, c1.y+4};
+                c2 = {c1.x, c1.y+3};
             }
         }
             // Else place horizontal/positive
         else {
-            c2 = {c1.x+4, c1.y};
+            c2 = {c1.x+3, c1.y};
         }
     }
     Ship ship(c1, c2);
@@ -177,66 +177,8 @@ void Game::placeDestroyer(Player & player) {
     Coords c2 = {0, 0};
     if (orientation) {
         // If unable to place horizontally, place vertically.
-        if (c1.x+3 >= player.getLength()) {
-            if (c1.x-3 > 0) {
-                // Place horizontal/negative
-                c2 = {c1.x-3, c1.y};
-            }
-            else if (c1.y+3 >= player.getWidth())
-                // Place vertical/negative
-                c2 = {c1.x, c1.y - 3};
-            else {
-                // Place vertical/positive
-                c2 = {c1.x, c1.y + 3};
-            }
-        }
-            // Else place horizontal/positive
-        else {
-            c2 = {c1.x + 3, c1.y};
-        }
-    }
-    Ship ship(c1, c2);
-    player.addShip(ship);
-}
-
-void Game::placeSubmarine(Player & player) {
-    cout << "Place the bow(front) of your Submarine:" << endl;
-    Coords c1 = getUserCoord();
-    bool orientation = getUserOrientation();
-    Coords c2 = {0, 0};
-    if (orientation) {
-        // If unable to place horizontally, place vertically.
-        if (c1.x+3 >= player.getLength()) {
-            if (c1.x-3 > 0) {
-                // Place horizontal/negative
-                c2 = {c1.x-3, c1.y};
-            }
-            else if (c1.y+3 >= player.getWidth())
-                // Place vertical/negative
-                c2 = {c1.x, c1.y - 3};
-            else {
-                // Place vertical/positive
-                c2 = {c1.x, c1.y + 3};
-            }
-        }
-            // Else place horizontal/positive
-        else {
-            c2 = {c1.x + 3, c1.y};
-        }
-    }
-    Ship ship(c1, c2);
-    player.addShip(ship);
-}
-
-void Game::placePatrol(Player & player) {
-    cout << "Place the bow(front) of your Patrol Boat:" << endl;
-    Coords c1 = getUserCoord();
-    bool orientation = getUserOrientation();
-    Coords c2 = {0, 0};
-    if (orientation) {
-        // If unable to place horizontally, place vertically.
         if (c1.x+2 >= player.getLength()) {
-            if (c1.x-5 > 0) {
+            if (c1.x-2 > 0) {
                 // Place horizontal/negative
                 c2 = {c1.x-2, c1.y};
             }
@@ -251,6 +193,64 @@ void Game::placePatrol(Player & player) {
             // Else place horizontal/positive
         else {
             c2 = {c1.x + 2, c1.y};
+        }
+    }
+    Ship ship(c1, c2);
+    player.addShip(ship);
+}
+
+void Game::placeSubmarine(Player & player) {
+    cout << "Place the bow(front) of your Submarine:" << endl;
+    Coords c1 = getUserCoord();
+    bool orientation = getUserOrientation();
+    Coords c2 = {0, 0};
+    if (orientation) {
+        // If unable to place horizontally, place vertically.
+        if (c1.x+2 >= player.getLength()) {
+            if (c1.x-2 > 0) {
+                // Place horizontal/negative
+                c2 = {c1.x-2, c1.y};
+            }
+            else if (c1.y+2 >= player.getWidth())
+                // Place vertical/negative
+                c2 = {c1.x, c1.y - 2};
+            else {
+                // Place vertical/positive
+                c2 = {c1.x, c1.y + 2};
+            }
+        }
+            // Else place horizontal/positive
+        else {
+            c2 = {c1.x + 2, c1.y};
+        }
+    }
+    Ship ship(c1, c2);
+    player.addShip(ship);
+}
+
+void Game::placePatrol(Player & player) {
+    cout << "Place the bow(front) of your Patrol Boat:" << endl;
+    Coords c1 = getUserCoord();
+    bool orientation = getUserOrientation();
+    Coords c2 = {0, 0};
+    if (orientation) {
+        // If unable to place horizontally, place vertically.
+        if (c1.x+1 >= player.getLength()) {
+            if (c1.x-1 > 0) {
+                // Place horizontal/negative
+                c2 = {c1.x-1, c1.y};
+            }
+            else if (c1.y+1 >= player.getWidth())
+                // Place vertical/negative
+                c2 = {c1.x, c1.y - 1};
+            else {
+                // Place vertical/positive
+                c2 = {c1.x, c1.y + 1};
+            }
+        }
+            // Else place horizontal/positive
+        else {
+            c2 = {c1.x + 1, c1.y};
         }
     }
     Ship ship(c1, c2);
