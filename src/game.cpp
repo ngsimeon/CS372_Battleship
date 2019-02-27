@@ -16,7 +16,7 @@ Game::Game() = default;
 // Main game loop where game is played.
 void Game::gameLoop()
 {
-    cout << "Game started" << endl;
+    cout << endl << "Game started" << endl << endl;
 
     // Player 1 places ships
     cout << "Player 1, place your ships!" << endl;
@@ -33,12 +33,14 @@ void Game::gameLoop()
     while(true) {
         // ---- PLAYER 1'S TURN ----
 
-        cout << "Player 1's Turn" << endl;
-        cout << "Your Board: " << endl;
+        fancyPrint("Player 1's Turn");
+        cout << "Your Board: " << endl << endl;
         printTopPlayer1();
+        cout << endl;
         printBottomPlayer1();
+        cout << endl;
         cout << "Fire at Player 2!" << endl;
-        Coords c1 = getUserCoordFire(_playerOne);
+        Coords c1 = getUserCoordFire(_playerTwo);
         if(_playerTwo.hit(c1)) {
             cout << "HIT!" << endl;
         }
@@ -55,13 +57,15 @@ void Game::gameLoop()
 
         // ---- PLAYER 2'S TURN ----
 
-        cout << "Player 2's Turn" << endl;
-        cout << "Your Board: " << endl;
-        printTopPlayer1();
-        printBottomPlayer1();
+        fancyPrint("Player 2's Turn");
+        cout << "Your Board: " << endl << endl;
+        printTopPlayer2();
+        cout << endl;
+        printBottomPlayer2();
+        cout << endl;
         cout << "Fire at Player 1!" << endl;
-        Coords c2 = getUserCoordFire(_playerTwo);
-        if(_playerOne.hit(c1)) {
+        Coords c2 = getUserCoordFire(_playerOne);
+        if(_playerOne.hit(c2)) {
             cout << "HIT!" << endl;
         }
         else {
@@ -103,7 +107,7 @@ Coords Game::getUserCoordFire(Player & player){
         Coords c(coordX, coordY);
         if(player.isCoordTakenFired(c)) {
             cout << "You have already fired at this coordinate!" << endl;
-            cout << "Enter another coordinate";
+            cout << "Enter another coordinate" << endl;
             continue;
         }
         else {
@@ -254,7 +258,13 @@ void Game::placeShip(Player & player, Game::Ships ship) {
 // Prints player 1's top board.
 void Game::printTopPlayer1() {
     cout << "Top Board: HITS and MISSES" << endl;
+    cout << " ";
+    for (size_t i = 0; i < _playerOne.getLength(); ++i) {
+        cout << i;
+    }
+    cout << endl;
     for (size_t y=0; y < _playerOne.getWidth(); ++y) {
+        cout << y;
         for(size_t x=0; x < _playerOne.getLength(); ++x) {
             Coords c = {x,y};
 
@@ -275,17 +285,24 @@ void Game::printTopPlayer1() {
 // Prints player 1's bottom board.
 void Game::printBottomPlayer1() {
     cout << "Bottom Board: SHIPS and ENEMY HITS" << endl;
-    for (size_t y=0; y< _playerOne.getLength(); ++y)
-    {
-        for (size_t x = 0; x < _playerOne.getWidth(); ++x)
-        {
+    cout << " ";
+    for (size_t i = 0; i < _playerOne.getLength(); ++i) {
+        cout << i;
+    }
+    cout << endl;
+    for (size_t y=0; y< _playerOne.getWidth(); ++y) {
+        cout << y;
+        for (size_t x = 0; x < _playerOne.getLength(); ++x) {
             Coords c = {x,y};
-            if(_playerOne.isCoordTakenHits(c))
+            if(_playerOne.isCoordTakenHits(c)) {
                 cout << "X";
-            else if(_playerOne.isCoordTakenFired(c))
+            }
+            else if(_playerOne.isCoordTakenFired(c)) {
                 cout << "O";
-            else if(_playerOne.isCoordTakenShip(c))
+            }
+            else if(_playerOne.isCoordTakenShip(c)) {
                 cout << "S";
+            }
             else
                 cout << "~";
         }
@@ -297,8 +314,14 @@ void Game::printBottomPlayer1() {
 // Prints player 2's top board.
 void Game::printTopPlayer2(){
     cout << "Top Board: HITS and MISSES" << endl;
-    for (size_t y=0; y < _playerTwo.getWidth(); ++y) {
-        for(size_t x=0; x < _playerTwo.getLength(); ++x) {
+    cout << " ";
+    for (size_t i = 0; i < _playerOne.getLength(); ++i) {
+        cout << i;
+    }
+    cout << endl;
+    for (size_t y = 0; y < _playerTwo.getWidth(); ++y) {
+        cout << y;
+        for(size_t x = 0; x < _playerTwo.getLength(); ++x) {
             Coords c = {x,y};
 
             if(_playerOne.isCoordTakenHits(c)) {
@@ -319,17 +342,24 @@ void Game::printTopPlayer2(){
 // Prints player 2's bottom board.
 void Game::printBottomPlayer2() {
     cout << "Bottom Board: SHIPS and ENEMY HITS" << endl;
-    for (size_t y=0; y< _playerTwo.getLength(); ++y)
-    {
-        for (size_t x = 0; x < _playerTwo.getWidth(); ++x)
-        {
+    cout << " ";
+    for (size_t i = 0; i < _playerOne.getLength(); ++i) {
+        cout << i;
+    }
+    cout << endl;
+    for (size_t y = 0; y < _playerTwo.getWidth(); ++y) {
+        cout << y;
+        for (size_t x = 0; x < _playerTwo.getLength(); ++x) {
             Coords c = {x,y};
-            if(_playerTwo.isCoordTakenHits(c))
+            if(_playerTwo.isCoordTakenHits(c)) {
                 cout << "X";
-            else if(_playerTwo.isCoordTakenFired(c))
+            }
+            else if(_playerTwo.isCoordTakenFired(c)) {
                 cout << "O";
-            else if(_playerTwo.isCoordTakenShip(c))
+            }
+            else if(_playerTwo.isCoordTakenShip(c)) {
                 cout << "S";
+            }
             else
                 cout << "~";
         }
@@ -337,10 +367,23 @@ void Game::printBottomPlayer2() {
     }
 }
 
+// fancyPrint()
+// Prints a string in a fancy manner.
+void Game::fancyPrint(const string & str) {
+    size_t len = str.length() + 4;
+    for (size_t i = 0; i < len; ++i)
+        cout << "-";
+    cout << endl;
+    cout << "|" << " " << str << " " << "|" << endl;
+    for (size_t i = 0; i < len; ++i)
+        cout << "-";
+    cout << endl;
+}
+
 // clearBoard()
 // Clears the board.
 void Game::clearBoard() const {
-    cout << string(50, '\n');
+    cout << string(100, '\n');
 }
 
 

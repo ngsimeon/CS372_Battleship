@@ -49,8 +49,6 @@ public:
     bool isSunk(const Ship &);
     bool allSunk();
 
-    friend ostream& operator<<(ostream &os, const Board &);
-
     // ---- Board: Data Members ----
 
 private:

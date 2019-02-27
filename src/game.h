@@ -43,6 +43,7 @@ public:
     void printBottomPlayer1();
     void printTopPlayer2();
     void printBottomPlayer2();
+    void fancyPrint(const string &);
     void clearBoard() const;
 
     // ---- Game: Data Members ----
