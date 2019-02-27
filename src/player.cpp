@@ -24,3 +24,8 @@ void Player::addShip(const Ship & ship) {
 bool Player::fireAtEnemy(const Coords & c){
     return _shipBoard.attack(c);
 }
+
+Board Player::getBoard() const
+{
+    return _shipBoard;
+}

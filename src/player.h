@@ -23,6 +23,8 @@ public:
 public:
     void addShip(const Ship &);
     bool fireAtEnemy(const Coords &);
+    Board getBoard()const;
+
 
     // ---- Player: Data Members ----
 

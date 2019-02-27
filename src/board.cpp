@@ -141,3 +141,18 @@ bool Board::allSunk() {
     }
     return true;
 }
+
+ostream &operator<<(ostream &os, const Board &b)
+{
+
+    //top board (fired/missed/nothing)
+    for (auto i=0; i< b.getLength(); ++i)
+    {
+        for(auto j=0; j < b.getWidth(); ++j)
+        {
+            os << "#";
+        }
+        os << endl;
+    }
+
+}

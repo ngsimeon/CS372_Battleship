@@ -10,7 +10,9 @@
 #include <cstddef>
 #include <vector>
 #include <algorithm>
+#include <iostream>
 #include "ship.h"
+using std::ostream;
 using std::vector;
 using std::find;
 
@@ -20,10 +22,15 @@ class Board {
 
     // ---- Board: Ctors ----
 
+
+
+
 public:
     Board();
     explicit Board(size_t);
     Board(size_t, size_t);
+
+    friend ostream &operator<<(ostream &os, const Board &b);
 
     // ---- Board: Public Member Functions ----
 
